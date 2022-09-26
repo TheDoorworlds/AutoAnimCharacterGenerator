@@ -1,0 +1,61 @@
+[gd_scene load_steps=15 format=2]
+
+[sub_resource type="AnimationNodeTimeSeek" id=16]
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=14]
+resource_local_to_scene = true
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=6]
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=7]
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=10]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id=4]
+states/Death/node = SubResource( 14 )
+states/Death/position = Vector2( 560, 75 )
+states/Idle/node = SubResource( 6 )
+states/Idle/position = Vector2( 560, 158 )
+states/Run/node = SubResource( 7 )
+states/Run/position = Vector2( 257, 158 )
+states/TakeDamage/node = SubResource( 10 )
+states/TakeDamage/position = Vector2( 257, 75 )
+transitions = [ "Run", "Idle", SubResource( 8 ), "Idle", "Run", SubResource( 9 ), "Idle", "TakeDamage", SubResource( 11 ), "Run", "TakeDamage", SubResource( 12 ), "TakeDamage", "Idle", SubResource( 13 ), "TakeDamage", "Death", SubResource( 15 ) ]
+start_node = "Idle"
+graph_offset = Vector2( -502.21, 0 )
+
+[sub_resource type="AnimationNodeBlendTree" id=1]
+resource_local_to_scene = true
+graph_offset = Vector2( -96.0143, 131.278 )
+nodes/Seek/node = SubResource( 16 )
+nodes/Seek/position = Vector2( 380, 160 )
+nodes/StateMachine/node = SubResource( 4 )
+nodes/StateMachine/position = Vector2( 180, 160 )
+nodes/output/position = Vector2( 520, 160 )
+node_connections = [ "output", 0, "Seek", "Seek", 0, "StateMachine" ]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
+
+[node name="AnimationTree" type="AnimationTree"]
+tree_root = SubResource( 1 )
+anim_player = NodePath("../AnimationPlayer")
+parameters/Seek/seek_position = 1.0
+parameters/StateMachine/playback = SubResource( 5 )
+parameters/StateMachine/Death/blend_position = Vector2( 0, 0 )
+parameters/StateMachine/Idle/blend_position = Vector2( 0, 0 )
+parameters/StateMachine/Run/blend_position = Vector2( 0, 0 )
+parameters/StateMachine/TakeDamage/blend_position = Vector2( 0, 0 )

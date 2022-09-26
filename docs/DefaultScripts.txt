@@ -1,0 +1,48 @@
+# THIS FILE CONTAINS THE DEFAULT FUNCTIONS IN THE EVENT THAT A FUNCITON IS CHANGED AND CAUSES PROBLEMS
+# You can replace any of these functions you've changed with thw following ones and they should work
+
+## AABaseCharacter.gd functions
+func _ready() -> void:
+	if !animTree:
+		animTree = $AnimationTree
+	if !animPlayer:
+		animPlayer = $CharacterSprite/SpriteAnimationPlayer
+	if !sprite:
+		sprite = $CharacterSprite
+	if !animState:
+		animState = animTree.get("parameters/playback")
+	if !animTreeRoot:
+		animTreeRoot = animTree.tree_root
+	if !animState:
+		animState = animTree.get("parameters/StateMachine/playback")
+	if !animStateMachine:
+		animStateMachine = animTree.tree_root.get_node("StateMachine")
+	animTree.set("parameters/StateMachine/Idle/blend_position", Vector2(0,1))
+	animTree.set("parameters/StateMachine/Run/blend_position", Vector2(0,1))
+
+func _physics_process(delta: float) -> void:
+	if !Engine.is_editor_hint():
+		var input_vector := get_direction()
+		match state:
+			States.Move:
+				animTree.set("parameters/StateMachine/Idle/blend_position", input_vector)
+				animTree.set("parameters/StateMachine/Move/blend_position", input_vector)
+				animState.travel("Move")
+				velocity += input_vector * acceleration * delta * SPEED_FACTOR
+				velocity = velocity.clamped(max_speed * delta * SPEED_FACTOR)
+			States.IDLE:
+				animState.travel("Idle")
+				velocity = Vector2.ZERO
+		move_and_collide(velocity)
+func set_character_state(new_state :int) -> void:
+	state = new_state
+	if !Engine.is_editor_hint():
+		sprite.texture = load(animation_data.states_details_map[States.keys()[state].capitalize()]["texture"])
+
+static func get_direction() -> Vector2:
+	return Vector2(
+		(Input.get_action_strength("right") - Input.get_action_strength("left")),
+		Input.get_action_strength("down") - Input.get_action_strength("up")
+	).normalized()
+	return Vector2.ZERO
+		

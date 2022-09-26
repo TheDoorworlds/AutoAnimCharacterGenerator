@@ -1,0 +1,715 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AutoAnim Plugin For Godot Engine v3.5 - Documentation</title>
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css" rel="stylesheet" />
+    <!--
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn {
+            margin: 3px !important;
+        }
+
+        .btn-outline-info {
+            color: #b2edfe !important;
+            border-color: #6cc3fa !important;
+        }
+
+        .btn-danger {
+            background-color: #a90909 !important;
+            border-color: #a90909 !important;
+            color: #fffffe !important;
+        }
+
+        .btn-danger:hover {
+            background-color: #6c0c1a !important;
+        }
+
+        .btn-primary {
+            background-color: #358af3 !important;
+            border-color: #358af3 !important;
+            color: #fffffe !important;
+        }
+
+        .btn-primary:hover {
+            background-color: #1f51cf !important;
+        }
+
+        .btn-secondary {
+            background-color: #5326b8 !important;
+            border-color: #5326b8 !important;
+            color: #fffffe !important;
+        }
+
+        .btn-secondary:hover {
+            background-color: #6b206e !important;
+        }
+
+        .btn-success {
+            background-color: #11a397 !important;
+            border-color: #11a397 !important;
+            color: #fffffe !important;
+        }
+
+        .btn-success:hover {
+            background-color: #1c2d82 !important;
+        }
+
+        .btn-outline-danger {
+            border-color: #a90909 !important;
+            color: #a90909 !important;
+        }
+
+        .btn-outline-primary {
+            border-color: #358af3 !improtant;
+            color: #358af3 !important;
+        }
+
+        .btn-outline-secondary {
+            border-color: #5326b8 !important;
+            color: #5326b8 !important;
+        }
+
+        .btn-outline-success {
+            border-color: #11a397 !important;
+            color: #11a397 !important;
+        }
+
+
+        h2 {
+            color: #17638b !important;
+        }
+
+        h4,
+        h5 {
+            color: #11a397 !important;
+        }
+
+        .bg-success {
+            background-color: #11a397 !important;
+        }
+
+        .bg-danger {
+            background-color: #a90909 !important;
+        }
+
+        .anchor::before {
+            content: '';
+            display: block;
+            position: relative;
+            width: 0;
+            height: 10em;
+            margin-top: -10em;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Roboto Slab', serif;
+        }
+    </style>
+</head>
+
+<body id="top">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color:#17638b; color:#fffffe">
+        <div class="container">
+            <div class="container-fluid">
+                <div class="row justify-content-end">
+                    <div class="col">
+                        <h1 class="navbar-brand" style="font-size:2rem">AutoAnim Plugin</h1>
+                        <h3 class="navbar-brand" style="color:#b2edfe; margin-top: -1rem">for Godot Engine v3.5</h3>
+                    </div>
+                    <div class="col align-self-center">
+                        <button class="navbar-toggler float-end" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbarToggler">
+                        <div class="navbar-nav">
+                            <a href="#intro" class="nav-link btn btn-outline-info">Intro</a>
+                            <a href="#getting-started" class="nav-link btn btn-outline-info">Getting Started</a>
+                            <a href="#spritesheets" class="nav-link btn btn-outline-info">Spritesheet Setup</a>
+                            <a href="#animations" class="nav-link btn btn-outline-info">Generating Animations</a>
+                            <a href="#troubleshooting" class="nav-link btn btn-outline-info">Troubleshooting</a>
+                            <a href="#planned-features" class="nav-link btn btn-outline-info">Wishlist Features</a>
+                            <a href="#contact" class="nav-link btn btn-outline-info">Contact</a>
+                            <a class="nav-link btn btn-secondary text-white" href="https://discord.gg/bmv4PUY3df">Discord</a>
+                            <a class="nav-link btn btn-primary text-white" href="https://www.patreon.com/TheDoorworlds">Patreon</a>
+                            <a class="nav-link btn btn-danger text-white" href="https://www.youtube.com/channel/UC2I6jA3l1V-xlxkvKA2gjRA">YouTube</a>
+                            <a class="nav-link btn btn-success text-white" href="https://github.com/TheDoorworlds/AutoAnimGenerator">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div>
+        <a href="#top" class="btn btn-secondary btn-floating sticky-bottom" id="btn-back-to-top" style="z-index: 100; position: fixed; right: 10px; bottom: 10px; opacity: 0.8">
+            <i class="bi bi-arrow-up-short"></i>
+        </a>
+    </div>
+
+    <!--- Intro --->
+    <div class="container anchor" id="intro">
+        <div class="row">
+            <div class="col">
+                <h2>Intro</h2>
+                <p>
+                    The AutoAnim Plugin for Godot 3.5 is an addon that aims to simplify the character creation process for 2D games. By automating certain repetitive and monotonous tasks, this plugin will enable devs to more quickly create usable character scenes to place within their game worlds.
+                </p>
+                <p>
+                    This extension is still in development at this time and I am working to improve it as much as possible. With your help, we can make a wonderful resource that will let indie devs gets more games to market so we can all play them!
+                </p>
+                <h4 class="text-center">Ways to get involved:</h4>
+                <div class="accordion col-lg-6 mx-auto" id="helpAccordion">
+
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="testPlugin">
+                            <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseTestPlugin" aria-expanded="true" aria-controls="collapseTestPlugin">
+                                Test the plugin for me!
+                            </button>
+                        </h2>
+                        <div id="collapseTestPlugin" class="accordion-collapse collapse" aria-labelledby="testPlugin">
+                            <div class="accordion-body">
+                                Download and use the plugin to make a project, and report back within issues you have, and any suggestions you think of.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="reviewCode">
+                            <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseReviewCode" aria-expanded="true" aria-controls="collapseReviewCode">
+                                Review my code!
+                            </button>
+                        </h2>
+                        <div id="collapseReviewCode" class="accordion-collapse collapse" aria-labelledby="reviewCode">
+                            <div class="accordion-body">
+                                Take a peep through the source code and help me correct errors, optimize functions, and streamline the entire thing.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="improveDocs">
+                            <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseImproveDocs" aria-expanded="true" aria-controls="collapseImproveDocs">
+                                Improve these docs!
+                            </button>
+                        </h2>
+                        <div id="collapseImproveDocs" class="accordion-collapse collapse" aria-labelledby="improveDocs">
+                            <div class="accordion-body">
+                                See a typo, or something could be made more clear? Let me know and I can make updates!
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="supportPatreon">
+                            <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseSupportPatreon" aria-expanded="true" aria-controls="collapseSupportPatreon">
+                                Support me on Patreon!
+                            </button>
+                        </h2>
+                        <div id="collapseSupportPatreon" class="accordion-collapse collapse" aria-labelledby="supportPatreon">
+                            <div class="accordion-body">
+                                Any level of support helps me spend less time trying to make ends meet and more time developing tools for the Godot community.
+                                <div class="d-grid gap-2 col-8 col-lg-6 mx-auto"><a class=" btn btn-outline-primary" href="https://www.patreon.com/TheDoorworlds">Patreon</a></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="joinDiscord">
+                            <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseJoinDiscord" aria-expanded="true" aria-controls="collapseJoinDiscord">
+                                Join the discussion on Discord!
+                            </button>
+                        </h2>
+                        <div id="collapseJoinDiscord" class="accordion-collapse collapse" aria-labelledby="joinDiscord">
+                            <div class="accordion-body">
+                                Come chat on the server and grow the community.
+                                <div class="d-grid gap-2 col-8 col-lg-6 mx-auto"><a class=" btn btn-outline-secondary" href="https://discord.gg/bmv4PUY3df">Discord</a></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="subscribeYouTube">
+                            <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseSubscribeYouTube" aria-expanded="true" aria-controls="collapseSubscribeYouTube">
+                                Subscribe to the YouTube channel!
+                            </button>
+                        </h2>
+                        <div id="collapseSubscribeYouTube" class="accordion-collapse collapse" aria-labelledby="subscribeYouTube">
+                            <div class="accordion-body">
+                                Help my channel grow to reach more people so we can bring great minds together to create amazing things.
+                                <div class="d-grid gap-2 col-6 col-lg-3 mx-auto"><a class=" btn btn-outline-danger" href="https://www.youtube.com/channel/UC2I6jA3l1V-xlxkvKA2gjRA">YouTube</a></div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <hr />
+    </div>
+
+
+    <!--- Getting Started --->
+    <div class="container anchor" id="getting-started">
+        <div class="row">
+            <div class="col">
+                <h2>Getting Started</h2>
+                <h4>Adding the AutoAnim Plugin to your Project</h4>
+                <ol>
+                    <li>
+                        <p>Download the files from GitHub.</p>
+                        <p>
+                            <img src="images/GithubDownload.png" class="img-fluid rounded border" alt="Download Plugin files from GitHub." />
+                        </p>
+                    </li>
+                    <li>
+                        <p>Extract the files (if desired).</p>
+                        <p>
+                            <img src="images/ExtractFiles.png" class="img-fluid rounded border" alt="Extract the files if desired" />
+                        </p>
+                    </li>
+                    <li>
+                        <p>Copy the 'addons’ folder to a new project.*</p>
+                        <p>
+                            <img src="images/CopyAddons.png" class="img-fluid rounded border" alt="Copy the addons folder to a new Godot project" />
+                        </p>
+                    </li>
+                    <li>
+                        <p>Enable the addon in the Project Settings, then click 'Close'.</p>
+                        <div class="row row-cols-1 row-cols-lg-2" style="margin: ">
+                            <div class="col">
+                                <center><img src="images/ProjectSettings.png" class="img-fluid rounded border" alt="Click Prokect Settings in the meun bar in Godot." /></center>
+                            </div>
+                            <div class="col">
+                                <center><img src="images/EnableAddon.png" class="img-fluid rounded border" alt="Enable the addon in Project Settings, then click close." /></center>
+                            </div>
+                        </div>
+                    </li>
+                </ol>
+                <p class="note note-warning">* While the add-on can be used with existing projects, it is recommended to use it with a brand new project due to how the scripting of characters created with this plugin is set up.</p>
+            </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-lg-2 bg-light" style="padding: 10px">
+            <div class="col align-self-center">
+                <h4>First Time Setup</h4>
+                <p>The first time you enable the plugin, you will see the First Time Setup pop-up. This interface has you set up the default settings for your project.</p>
+                <ol>
+                    <li>Select your character directory.</li>
+                    <li>Select your asset directory.</li>
+                    <li>Select which type of project you're making.</li>
+                    <li>Input the default width and height of your character sprites.*</li>
+                    <li>Input the default length of your animations.*</li>
+                    <li>Input the default step between animation frames.*</li>
+                    <li>Click save & close.</li>
+                </ol>
+                <p class="note note-light">* These settings can be set for each individual state.</p>
+                <p>Once you've completed the First Time Setup, you can access the main addon interface by clicking 'AutoAnim' in your editor's interface bar - the one by 2D, 3D, Script, and Asset Library (by default). </p>
+                <center><img src="images/AutoAnim%20Button%20Location.png" class="img-fluid rounded border text-center" /></center>
+            </div>
+            <div class="col align-self-center">
+                <center><img src="images/FirstTimeSetup.png" class="img-fluid rounded border" /></center>
+            </div>
+
+        </div>
+
+        <hr />
+    </div>
+    <!--- Setting up your spritesheets --->
+    <div class="container anchor" id="spritesheets">
+        <div class="row">
+            <div class="col">
+                <h2>Setting Up Your Spritesheets</h2>
+                <p>The function of this plugin relies upon properly set up spritesheets. The magic works by automatically calculating the hframes and vframes on the spritesheet, then iterating over the frames by row and assigning them to the appropriate timing on the animation timeliness.
+                    To make sure this process happens as seamlessly as possible, please adhere to the following guidelines when creating your spritesheets:
+                </p>
+                <ol>
+                    <li>
+                        <p>Every frame should be the same size. Leaving some empty space around your characters will give you space for your character to squash and stretch without having to change the frame size.
+                            <br /><b>NOTE:</b> This does not mean that the height and width must be the same. Your sprite can have a different width than height and still work (<a href="#spritesheet-examples">see below for example</a>)
+                        </p>
+                    </li>
+                    <li>The order of your sheets should follow this pattern:
+                        <ol type="a">
+                            <li>South</li>
+                            <li>Southeast</li>
+                            <li>East</li>
+                            <li>Northeast</li>
+                            <li>North</li>
+                            <li>Northwest</li>
+                            <li>West</li>
+                            <li>Southwest</li>
+                        </ol>
+                    </li>
+                    <li>Each direction should be on its own line.</li>
+                    <li>Each state should have its own sheet.</li>
+                </ol>
+                <p class="note note-light">Template / example spritesheets are in the Assets folder in the main zip file when you download the plugin from GitHub.</p>
+                <h4 id="spritesheet-examples">Examples:</h4>
+                <div class="row row-cols-1 row-cols-lg-2">
+                    <div class="col" style="margin-bottom: 10px;">
+                        <div class="card mb-3 h-100">
+                            <div class="row g-0">
+                                <div class="col col-md-4" style="background-image:url('images/Clio%20Preview.png'); background-position:center; background-repeat:no-repeat; background-size:contain; min-height:128px; min-width:96px;">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Will not work</h5>
+                                        <p class="card-text">This character sheet is <b>NOT</b> set up properly.</p>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item border-top bg-danger text-white">Frames are not consistent sizes</li>
+                                        <li class="list-group-item bg-danger text-white">A duplicate frame is needed for the animations to work</li>
+                                        <li class="list-group-item bg-danger text-white">The directions are NOT in the proper order (All are E)</li>
+                                        <li class="list-group-item bg-danger text-white">More than one state's animation is on the sheet</li>
+                                        <li class="list-group-item bg-danger text-white">All directions are not separated out onto one line each</li>
+                                    </ul>
+                                    <div class="card-body border-top">
+                                        <p class="card-text text-muted small">Image Credit: <a href="https://opengameart.org/content/clio-character-animated-sprites" class="card-link text-muted" target="_blank">WeRideForCoffee on OpenGameArt.org</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" style="margin-bottom: 10px;">
+                        <div class="card mb-3 h-100">
+                            <div class="row g-0">
+                                <div class="col col-md-4" style="background-image:url('images/human_base.png'); background-position:center; background-repeat:no-repeat; background-size:contain; min-height:80px; min-width:144px;">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Will not work</h5>
+                                        <p class="card-text">This character sheet is <b>NOT</b> set up properly.</p>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item border-top bg-success text-white">All frames are the same size (16px by 18px)</li>
+                                        <li class="list-group-item bg-danger text-white">A duplicate of the center frame on each row is needed for the animation to work.</li>
+                                        <li class="list-group-item bg-danger text-white">The directions are NOT in the proper order (N,W,S,E)</li>
+                                        <li class="list-group-item bg-danger text-white">More than one state's animation is on the sheet</li>
+                                        <li class="list-group-item bg-success text-white">Each direction is on one line</li>
+                                    </ul>
+                                    <div class="card-body border-top">
+                                        <p class="card-text text-muted small">Image Credit: <a href="https://opengameart.org/content/16x18-character-base-template-collage" class="card-link text-muted" target="_blank">CruzR on OpenGameArt.org</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col" style="margin-bottom: 10px;">
+                        <div class="card mb-3 h-100">
+                            <div class="row g-0">
+                                <div class="col col-md-4" style="background-image:url('images/mage.png'); background-position:center; background-repeat:no-repeat; background-size:contain; min-height:32px; min-width:128px;">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Will not work</h5>
+                                        <p class="card-text">This character sheet is <b>NOT</b> set up properly.</p>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item border-top bg-success text-white">All frames are the same size (16px by 16px)</li>
+                                        <li class="list-group-item bg-success text-white">Every frame is accounted for in the sheet</li>
+                                        <li class="list-group-item bg-danger text-white">The directions are NOT in the proper order (S,N,E,W)</li>
+                                        <li class="list-group-item bg-success text-white">A single state's animation is on the sheet</li>
+                                        <li class="list-group-item bg-danger text-white">Multiple directions on one line</li>
+                                    </ul>
+                                    <div class="card-body border-top">
+                                        <p class="card-text text-muted small">Image Credit: <a href="https://opengameart.org/content/16x16-mage" class="card-link text-muted" target="_blank">saint11 on OpenGameArt.org</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col" style="margin-bottom: 10px;">
+                        <div class="card mb-3 h-100">
+                            <div class="row g-0">
+                                <div class="col col-md-4" style="background-image:url('images/Chara220914092247.png'); background-position:center; background-repeat:no-repeat; background-size:contain; min-height:128px; min-width:96px;">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Will not work</h5>
+                                        <p class="card-text">This character sheet is <b>NOT</b> set up properly.</p>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item border-top bg-success text-white">All frames are the same size (32px by 32px)</li>
+                                        <li class="list-group-item bg-danger text-white">A duplicate of the center frame on each row is needed for the animation to work</li>
+                                        <li class="list-group-item bg-danger text-white">The directions are NOT in the proper order (S,E,W,N)</li>
+                                        <li class="list-group-item bg-success text-white">A single state's animation is on the sheet</li>
+                                        <li class="list-group-item bg-success text-white">Each direction is on one line</li>
+                                    </ul>
+                                    <div class="card-body border-top">
+                                        <p class="card-text text-muted small">Image Credit: <a href="https://pipoya.itch.io/charamel" class="card-link text-muted" target="_blank">Pipoya on Itch.io</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col" style="margin-bottom: 10px;">
+                        <div class="card mb-3 h-100">
+                            <div class="row g-0">
+                                <div class="col col-md-4" style="background-image:url('images/character_base_16x16b.png'); background-position:center; background-repeat:no-repeat; background-size:contain; min-height:64px; min-width:64px;">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Will not work</h5>
+                                        <p class="card-text">This character sheet is <b>NOT</b> set up properly.</p>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item border-top bg-success text-white">All frames are the same size (16px by 16px)</li>
+                                        <li class="list-group-item bg-success text-white">Every frame is accounted for in the sheet</li>
+                                        <li class="list-group-item bg-danger text-white">The directions are NOT in the proper order (S,N,W,E)</li>
+                                        <li class="list-group-item bg-success text-white">A single state's animation is on the sheet</li>
+                                        <li class="list-group-item bg-success text-white">Each direction is on one line</li>
+                                    </ul>
+                                    <div class="card-body border-top">
+                                        <p class="card-text text-muted small">Image Credit: <a href="https://opengameart.org/content/simple-character-base-16x16" class="card-link text-muted" target="_blank">zaphgames on OpenGameArt.org</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col" style="margin-bottom: 10px;">
+                        <div class="card mb-3 h-100">
+                            <div class="row g-0">
+                                <div class="col col-md-4" style="background-image:url('images/character_base_16x16.png'); background-position:center; background-repeat:no-repeat; background-size:contain; min-height:64px; min-width:64px;">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Will work</h5>
+                                        <p class="card-text">This character sheet is set up properly.</p>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item border-top bg-success text-white">All frames are the same size (16px by 16px)</li>
+                                        <li class="list-group-item bg-success text-white">Every frame is accounted for in the sheet</li>
+                                        <li class="list-group-item bg-success text-white">The directions are in the proper order (S,E,N,W)</li>
+                                        <li class="list-group-item bg-success text-white">A single state's animation is on the sheet</li>
+                                        <li class="list-group-item bg-success text-white">Each direction is on one line</li>
+                                    </ul>
+                                    <div class="card-body border-top">
+                                        <p class="card-text text-muted small">Image Credit: <a href="https://opengameart.org/content/simple-character-base-16x16" class="card-link text-muted" target="_blank">zaphgames on OpenGameArt.org</a><br /><span class="small">*with minor edits by me</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <hr />
+    </div>
+    <!--- Generating Animations --->
+
+    <div class="container anchor" id="animations">
+        <div class="row">
+            <div class="col">
+                <h2>Generating Animations</h2>
+                <ol>
+                    <li>Name and add your character.</li>
+                    <li>Select the state from the states box.</li>
+                    <li>Select 'Edit State'.</li>
+                    <li>Assign your spritesheet to the state.</li>
+                    <li>Ensure that your other settings are correct for your animation.</li>
+                    <li>Click save.</li>
+                    <li>Click 'Generate Animations'.*</li>
+                </ol>
+                <p>* You may need to click the button twice. This is a known bug.</p>
+            </div>
+        </div>
+
+        <hr />
+    </div>
+    <!--- Troubleshooting --->
+    <div class="container anchor" id="troubleshooting">
+        <div class="row">
+            <div class="col">
+                <h2>Troubleshooting</h2>
+                <p></p>
+                <h4>Known Issues</h4>
+                Please check the <a href="https://github.com/TheDoorworlds/AutoAnimGenerator/issues">Git Hub Issues Page</a> for Known Issues and their workarounds.
+                <!--
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Issue</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Workaround</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p class="text-danger">'Generate Animations' Button Not Working</p>
+                            </td>
+                            <td>
+                                <p class="text-muted">The 'Generate Animations' button on the Edit State interface does not always work immediately.</p>
+                            </td>
+                            <td>
+                                <p class="text-primary"> Clicking the 'Generate Animations' button twice should display the results correctly.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="text-danger">Character Preview misaligned</p>
+                            </td>
+                            <td>
+                                <p class="text-muted">The Character Preview in the Edit State interface is sometimes misaligned when first appearing.</p>
+                            </td>
+                            <td>
+                                <p class="text-primary">Choosing a scale button at the bottom will align it properly.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="text-danger">The only properly working direction set is 8-Direction</p>
+                            </td>
+                            <td>
+                                <p class="text-muted">Working with directions sets of anything other than 8 currently leads to an error on every frame. The animations do not play in the AnimationTree properly. This is likely due to a bug in Godot Engine itself, according to the Godot Discord server. </p>
+                            </td>
+                            <td>
+                                <p class="text-primary">None at this time, though I am working on a solution.</p>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+-->
+                <p class="note note-danger small">Please report any bugs not listed here to the Discord Server under the Bug Reports channel or directly on the <a href="https://github.com/TheDoorworlds/AutoAnimGenerator/issues">Git Hub Issues Page</a>.</p>
+            </div>
+        </div>
+
+        <hr />
+    </div>
+
+    <!--- Planned Features --->
+    <div class="container anchor" id="planned-features">
+        <div class="row">
+            <div class="col">
+                <h2>Wishlist Features</h2>
+                <p>These are the features I plan to implement eventually but are not yet part of the plugin.</p>
+                <p>If you'd like to help implement one or more of these, please let me know and I'll set up a branch for you - or fork the GitHub project!</p>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Feature</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p>Aseprite file compatibility</p>
+                            </td>
+                            <td>
+                                <p class="text-muted">Add the ability to directly use .ase files to generate animations, set states, and set up blend trees.</p>
+                            </td>
+                            <td>
+                                <p>Not yet started.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Advanced frame configuration</p>
+                            </td>
+                            <td>
+                                <p class="text-muted">Add the ability to have your characters use a single spritesheet, or have any order of directions on the sheet instead of using the current strict formatting guidelines.</p>
+                            </td>
+                            <td>
+                                <p>Not yet started.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Character Scene Inheritance</p>
+                            </td>
+                            <td>
+                                <p class="text-muted">Make character scenes inherit from BaseCharacter.tscn so changes will propogate automatically to all created characters.</p>
+                            </td>
+                            <td>
+                                <p>Not yet started.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Player Characters</p>
+                            </td>
+                            <td>
+                                <p class="text-muted">Add the ability to tell the plugin when a character should be a player and receive input accordingly. Currently, you must go back and change the script manually by extending the BaseCharacter (AABaseCharacter.gd) script.</p>
+                            </td>
+                            <td>
+                                <p class="text-success">Done!</p>
+                                <p class="text-success">You can now toggle whether a character is a player in the character scene's inspector.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Easier use of plugin in existing projects</p>
+                            </td>
+                            <td>
+                                <p class="text-muted">Add functionality to allow users to more easily add this plugion to existing projects. Currenlty this can be done but will take a significant amount of configuration.</p>
+                            </td>
+                            <td>
+                                <p>Not yet started.</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="note note-success">If there is a feature you'd like to see, please let me know in either the Discord 'suggestions' channel or on the <a href="https://github.com/TheDoorworlds/AutoAnimGenerator/issues">Git Hub Issues Page</a> (use 'New Issue' and 'Feature Request').</p>
+            </div>
+        </div>
+
+        <hr />
+    </div>
+    <!--- Contact --->
+    <div class="container anchor" id="contact">
+        <h2 id="contact">Contact</h2>
+        <p>Please feel free to contact me on the Discord server if you are having trouble with this plugin or have any comments or suggestions.</p>
+    </div>
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <div clas="col-md-4 d-flex align-items-center">
+                <a class="btn btn-outline-secondary" href="https://discord.gg/bmv4PUY3df">Discord</a>
+                <a class="btn btn-outline-primary" href="https://www.patreon.com/TheDoorworlds">Patreon</a>
+                <a class="btn btn-outline-danger" href="https://www.youtube.com/channel/UC2I6jA3l1V-xlxkvKA2gjRA">YouTube</a>
+                <a class="btn btn-outline-success" href="https://github.com/TheDoorworlds/AutoAnimGenerator">GitHub</a>
+            </div>
+            <div class="nav col-md-5 justify-content-end list-unstyled d-flex">
+                <h6 class="text-muted">Plugin made for <a href="https://docs.godotengine.org/en/3.6/"><img class="img-fluid" src="https://godotengine.org/themes/godotengine/assets/press/logo_large_color_light.svg" style="max-width: 10rem" /> Godot Game Engine v3.5</a></h6>
+            </div>
+        </footer>
+    </div>
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"></script>
+    <!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>-->
+</body></html>

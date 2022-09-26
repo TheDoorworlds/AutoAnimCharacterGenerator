@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://addons/Autoanim/Resources/Scripts/VarsTracker.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+CharacterList = [  ]
+CharacterDirectory = "res://Characters"
+AssetDirectory = "res://Assets/Character"
+DefaultAnimationStatesList = [ "Death", "Idle", "Run", "TakeDamage" ]
+DefaultSpriteHeight = 16
+DefaultSpriteWidth = 16
+DefaultDirectionSet = 0
+DefaultDirections = [ 0, 2, 4, 6 ]
+DefaultAnimationStep = 0.1
+DefaultAnimationLength = 0.8

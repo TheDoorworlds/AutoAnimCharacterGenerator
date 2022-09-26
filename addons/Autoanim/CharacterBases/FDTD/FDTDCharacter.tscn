@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://addons/Autoanim/CharacterBases/Base/BaseCharacter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/Autoanim/Resources/Scripts/AnimationData.gd" type="Script" id=2]
+
+[sub_resource type="Resource" id=20]
+resource_local_to_scene = true
+script = ExtResource( 2 )
+character_name = ""
+states = [ "Death", "Idle", "Run", "TakeDamage" ]
+directions = [  ]
+character_animations = [ "RESET" ]
+char_file_name = ""
+states_details_map = {
+}
+
+[sub_resource type="CapsuleShape2D" id=21]
+resource_local_to_scene = true
+height = 2.0
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=22]
+
+[node name="FDTDCharacter" instance=ExtResource( 1 )]
+animation_data = SubResource( 20 )
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource( 21 )
+
+[node name="AnimationTree" parent="." index="2"]
+parameters/playback = SubResource( 22 )

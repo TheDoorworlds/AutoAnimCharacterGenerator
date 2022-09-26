@@ -1,0 +1,47 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://addons/Autoanim/CharacterBases/Base/BaseCharacter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/Autoanim/Resources/Scripts/AnimationData.gd" type="Script" id=2]
+
+[sub_resource type="Resource" id=1]
+resource_local_to_scene = true
+script = ExtResource( 2 )
+character_name = ""
+states = [ "Death", "Idle", "Run", "TakeDamage" ]
+directions = [  ]
+character_animations = [ "RESET" ]
+char_file_name = ""
+states_details_map = {
+}
+
+[sub_resource type="CapsuleShape2D" id=2]
+resource_local_to_scene = true
+height = 2.0
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=4]
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=5]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+
+[sub_resource type="AnimationNodeStateMachine" id=8]
+resource_local_to_scene = true
+states/Idle/node = SubResource( 4 )
+states/Idle/position = Vector2( 356, 93 )
+states/Move/node = SubResource( 5 )
+states/Move/position = Vector2( 652, 93 )
+transitions = [ "Idle", "Move", SubResource( 6 ), "Move", "Idle", SubResource( 7 ) ]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
+
+[node name="FDISCharacter" instance=ExtResource( 1 )]
+animation_data = SubResource( 1 )
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource( 2 )
+
+[node name="AnimationTree" parent="." index="2"]
+tree_root = SubResource( 8 )
+parameters/playback = SubResource( 9 )

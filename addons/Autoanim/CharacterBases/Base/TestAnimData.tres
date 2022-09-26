@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://addons/Autoanim/Resources/Scripts/AnimationData.gd" type="Script" id=1]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource( 1 )
+character_name = ""
+states = [ "Death", "Idle", "Run", "TakeDamage" ]
+directions = [  ]
+character_animations = [ "RESET" ]
+char_file_name = ""
+states_details_map = {
+}

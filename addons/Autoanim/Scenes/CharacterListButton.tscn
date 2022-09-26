@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://addons/Autoanim/Resources/CharacterListButtonGroup.tres" type="ButtonGroup" id=1]
+[ext_resource path="res://addons/Autoanim/Resources/Theme/AutoAnimTheme.tres" type="Theme" id=2]
+[ext_resource path="res://addons/Autoanim/Resources/Theme/stybx_norm_ButtonBorder.tres" type="StyleBox" id=3]
+[ext_resource path="res://addons/Autoanim/Resources/Theme/stybx_pressed_ButtonBorder.tres" type="StyleBox" id=4]
+[ext_resource path="res://addons/Autoanim/Resources/Theme/stybx_hover_ButtonBorder.tres" type="StyleBox" id=5]
+
+[node name="btn_CharacterListButton" type="Button"]
+margin_right = 255.0
+margin_bottom = 20.0
+theme = ExtResource( 2 )
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 5 )
+custom_styles/disabled = ExtResource( 3 )
+custom_styles/normal = ExtResource( 3 )
+toggle_mode = true
+group = ExtResource( 1 )
+text = "Test"
+flat = true

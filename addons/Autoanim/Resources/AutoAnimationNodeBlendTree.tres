@@ -1,0 +1,30 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=7 format=2]
+
+[sub_resource type="AnimationNodeTimeSeek" id=3]
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=6]
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=7]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+
+[sub_resource type="AnimationNodeStateMachine" id=4]
+states/Idle/node = SubResource( 6 )
+states/Idle/position = Vector2( 525, 158 )
+states/Run/node = SubResource( 7 )
+states/Run/position = Vector2( 229, 158 )
+transitions = [ "Run", "Idle", SubResource( 8 ), "Idle", "Run", SubResource( 9 ) ]
+start_node = "Idle"
+graph_offset = Vector2( 0, 33.8063 )
+
+[resource]
+resource_local_to_scene = true
+graph_offset = Vector2( -552.794, -36.4544 )
+nodes/Seek/node = SubResource( 3 )
+nodes/Seek/position = Vector2( 380, 160 )
+nodes/StateMachine/node = SubResource( 4 )
+nodes/StateMachine/position = Vector2( 180, 160 )
+nodes/output/position = Vector2( 520, 160 )
+node_connections = [ "Seek", 0, "StateMachine", "output", 0, "Seek" ]

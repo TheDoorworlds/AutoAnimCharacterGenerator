@@ -1,0 +1,2237 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://addons/Autoanim/Resources/notosans/noto_12_bold.tres" type="DynamicFont" id=1]
+[ext_resource path="res://addons/Autoanim/Resources/notosans/noto_12pt_reg.tres" type="DynamicFont" id=2]
+[ext_resource path="res://addons/Autoanim/Resources/Theme/bg_modulates_darkblue.tres" type="StyleBox" id=3]
+[ext_resource path="res://addons/Autoanim/Scenes/AutoAnimsMainControl.gd" type="Script" id=4]
+[ext_resource path="res://addons/Autoanim/Resources/notosans/noto_12pt_bold_subhead.tres" type="DynamicFont" id=5]
+[ext_resource path="res://addons/Autoanim/AnimationGenerator.gd" type="Script" id=6]
+[ext_resource path="res://addons/Autoanim/Resources/Theme/AutoAnimTheme.tres" type="Theme" id=7]
+[ext_resource path="res://addons/Autoanim/Resources/notosans/NotoSans-Regular.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://addons/Autoanim/Scenes/lbl_Default.tscn" type="PackedScene" id=9]
+[ext_resource path="res://addons/Autoanim/Resources/Scripts/Savers.gd" type="Script" id=10]
+
+[sub_resource type="DynamicFont" id=1]
+size = 12
+extra_spacing_top = -4
+extra_spacing_bottom = -4
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 12
+extra_spacing_top = -3
+extra_spacing_bottom = -3
+font_data = ExtResource( 8 )
+
+[node name="AutoAnimsBaseControl" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 7 )
+script = ExtResource( 4 )
+
+[node name="MAIN_SCROLL_CONTAINER" type="ScrollContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="HBOX_LAYOUT" type="VBoxContainer" parent="MAIN_SCROLL_CONTAINER"]
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HEADER_PANEL" type="Panel" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT"]
+margin_right = 1024.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="TITLE_LABEL" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/HEADER_PANEL"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 0, 30 )
+text = "AUTOANIM GENERATOR"
+align = 1
+valign = 1
+
+[node name="HSeparator" type="HSeparator" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT"]
+margin_top = 34.0
+margin_right = 1024.0
+margin_bottom = 38.0
+
+[node name="GenerateAnimsControl" type="HBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT"]
+margin_top = 42.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_vertical = 3
+theme = ExtResource( 7 )
+
+[node name="CHARACTER_LIST_PANEL" type="Panel" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl"]
+margin_right = 204.0
+margin_bottom = 558.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CHARACTER_LIST" type="VBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/CHARACTER_LIST_PANEL"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+
+[node name="CHARACTER_LIST_HEADER" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/CHARACTER_LIST_PANEL/CHARACTER_LIST"]
+margin_right = 204.0
+margin_bottom = 37.0
+custom_fonts/font = ExtResource( 1 )
+text = "CHARACTER LIST
+"
+align = 1
+valign = 1
+
+[node name="CHARCTER_LIST_SCROLL_CONTAINER" type="ScrollContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/CHARACTER_LIST_PANEL/CHARACTER_LIST"]
+margin_top = 41.0
+margin_right = 204.0
+margin_bottom = 502.0
+size_flags_vertical = 3
+
+[node name="vbox_CharacterList" type="VBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/CHARACTER_LIST_PANEL/CHARACTER_LIST/CHARCTER_LIST_SCROLL_CONTAINER"]
+unique_name_in_owner = true
+margin_right = 204.0
+margin_bottom = 461.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBOX_COUNTERS" type="HBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/CHARACTER_LIST_PANEL/CHARACTER_LIST"]
+margin_top = 506.0
+margin_right = 204.0
+margin_bottom = 527.0
+
+[node name="CHARACTER_COUNT_HEADER" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/CHARACTER_LIST_PANEL/CHARACTER_LIST/HBOX_COUNTERS"]
+margin_right = 100.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+text = "Total Number of Characters:"
+align = 2
+autowrap = true
+
+[node name="lbl_CharacterCount" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/CHARACTER_LIST_PANEL/CHARACTER_LIST/HBOX_COUNTERS"]
+unique_name_in_owner = true
+margin_left = 104.0
+margin_top = 2.0
+margin_right = 204.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+autowrap = true
+
+[node name="btn_RefreshCharacterList" type="Button" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/CHARACTER_LIST_PANEL/CHARACTER_LIST"]
+unique_name_in_owner = true
+margin_top = 531.0
+margin_right = 204.0
+margin_bottom = 558.0
+hint_tooltip = "Click me if the list does not accurately reflect the characters you have made."
+text = "Refresh Character List"
+
+[node name="GENERATION_PANEL" type="VBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl"]
+margin_left = 208.0
+margin_right = 1024.0
+margin_bottom = 558.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="HBOX_DIRECTORIES" type="HBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL"]
+margin_right = 816.0
+margin_bottom = 59.0
+size_flags_horizontal = 3
+
+[node name="VBOX_CHARACTER_DIRECTORY" type="VBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_DIRECTORIES"]
+margin_right = 402.0
+margin_bottom = 59.0
+size_flags_horizontal = 3
+
+[node name="btn_SetCharacterDirectory" type="Button" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_DIRECTORIES/VBOX_CHARACTER_DIRECTORY"]
+unique_name_in_owner = true
+margin_right = 402.0
+margin_bottom = 27.0
+text = "Set Character Directory..."
+
+[node name="lbl_CharacterDirectory" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_DIRECTORIES/VBOX_CHARACTER_DIRECTORY"]
+unique_name_in_owner = true
+margin_top = 31.0
+margin_right = 402.0
+margin_bottom = 59.0
+grow_vertical = 2
+rect_min_size = Vector2( 0, 28 )
+size_flags_horizontal = 7
+size_flags_vertical = 1
+size_flags_stretch_ratio = 3.0
+align = 1
+autowrap = true
+max_lines_visible = 2
+
+[node name="HSeparator" type="VSeparator" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_DIRECTORIES"]
+margin_left = 406.0
+margin_right = 410.0
+margin_bottom = 59.0
+
+[node name="VBOX_ASSET_DIRECTORY" type="VBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_DIRECTORIES"]
+margin_left = 414.0
+margin_right = 816.0
+margin_bottom = 59.0
+size_flags_horizontal = 3
+
+[node name="btn_SetAssetDirectory" type="Button" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_DIRECTORIES/VBOX_ASSET_DIRECTORY"]
+unique_name_in_owner = true
+margin_right = 402.0
+margin_bottom = 27.0
+text = "Set Asset Directory..."
+
+[node name="lbl_AssetDirectory" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_DIRECTORIES/VBOX_ASSET_DIRECTORY"]
+unique_name_in_owner = true
+margin_top = 31.0
+margin_right = 402.0
+margin_bottom = 59.0
+grow_vertical = 2
+rect_min_size = Vector2( 0, 28 )
+size_flags_horizontal = 7
+size_flags_vertical = 1
+size_flags_stretch_ratio = 3.0
+custom_constants/line_spacing = 14
+align = 1
+autowrap = true
+max_lines_visible = 2
+
+[node name="HSeparator2" type="VSeparator" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_DIRECTORIES"]
+visible = false
+margin_left = 544.0
+margin_right = 548.0
+margin_bottom = 60.0
+
+[node name="VBOX_SET_CHARACTER_SCRIPTS" type="VBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_DIRECTORIES"]
+visible = false
+margin_left = 549.0
+margin_right = 816.0
+margin_bottom = 60.0
+size_flags_horizontal = 3
+
+[node name="HBOX_SET_BASE_CHARACTER_SCRIPT" type="HBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_DIRECTORIES/VBOX_SET_CHARACTER_SCRIPTS"]
+margin_right = 267.0
+margin_bottom = 28.0
+
+[node name="btn_SetCharacterScript" type="Button" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_DIRECTORIES/VBOX_SET_CHARACTER_SCRIPTS/HBOX_SET_BASE_CHARACTER_SCRIPT"]
+unique_name_in_owner = true
+margin_right = 155.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+text = "Change Base NPC Script..."
+
+[node name="lbl_CharacterScript" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_DIRECTORIES/VBOX_SET_CHARACTER_SCRIPTS/HBOX_SET_BASE_CHARACTER_SCRIPT"]
+unique_name_in_owner = true
+margin_left = 159.0
+margin_right = 267.0
+margin_bottom = 28.0
+grow_vertical = 2
+rect_min_size = Vector2( 0, 28 )
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_constants/line_spacing = 14
+align = 1
+autowrap = true
+clip_text = true
+max_lines_visible = 2
+
+[node name="HBOX_SET_PLAYER_CHARACTER_SCRIPT" type="HBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_DIRECTORIES/VBOX_SET_CHARACTER_SCRIPTS"]
+margin_top = 32.0
+margin_right = 267.0
+margin_bottom = 60.0
+
+[node name="btn_SetPlayerScript" type="Button" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_DIRECTORIES/VBOX_SET_CHARACTER_SCRIPTS/HBOX_SET_PLAYER_CHARACTER_SCRIPT"]
+unique_name_in_owner = true
+margin_right = 135.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+text = "Change Player Script..."
+
+[node name="lbl_PlayerScript" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_DIRECTORIES/VBOX_SET_CHARACTER_SCRIPTS/HBOX_SET_PLAYER_CHARACTER_SCRIPT"]
+unique_name_in_owner = true
+margin_left = 139.0
+margin_right = 267.0
+margin_bottom = 28.0
+grow_vertical = 2
+rect_min_size = Vector2( 0, 28 )
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_constants/line_spacing = 14
+align = 1
+autowrap = true
+clip_text = true
+max_lines_visible = 2
+
+[node name="HSeparator" type="HSeparator" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL"]
+margin_top = 63.0
+margin_right = 816.0
+margin_bottom = 73.0
+custom_constants/separation = 10
+
+[node name="HBOX_CHARACTER_MANAGEMENT" type="HBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL"]
+margin_top = 77.0
+margin_right = 816.0
+margin_bottom = 243.0
+
+[node name="VBOX_CHARACTER_INFO_INPUT" type="VBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_CHARACTER_MANAGEMENT"]
+margin_right = 406.0
+margin_bottom = 166.0
+size_flags_horizontal = 3
+
+[node name="HBOX_CHARACTER_NAME" type="HBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_CHARACTER_MANAGEMENT/VBOX_CHARACTER_INFO_INPUT"]
+margin_right = 406.0
+margin_bottom = 24.0
+
+[node name="CHARACTER_NAME_HEADER" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_CHARACTER_MANAGEMENT/VBOX_CHARACTER_INFO_INPUT/HBOX_CHARACTER_NAME"]
+margin_top = 5.0
+margin_right = 106.0
+margin_bottom = 19.0
+text = "Character Name:"
+
+[node name="line_CharacterName" type="LineEdit" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_CHARACTER_MANAGEMENT/VBOX_CHARACTER_INFO_INPUT/HBOX_CHARACTER_NAME"]
+unique_name_in_owner = true
+margin_left = 110.0
+margin_right = 406.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+placeholder_text = "Enter the Character's Name"
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="HBOX_CHARACTER_BUTTONS" type="HBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_CHARACTER_MANAGEMENT/VBOX_CHARACTER_INFO_INPUT"]
+margin_top = 28.0
+margin_right = 406.0
+margin_bottom = 55.0
+size_flags_horizontal = 3
+
+[node name="btn_AddCharacter" type="Button" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_CHARACTER_MANAGEMENT/VBOX_CHARACTER_INFO_INPUT/HBOX_CHARACTER_BUTTONS"]
+unique_name_in_owner = true
+margin_right = 201.0
+margin_bottom = 27.0
+hint_tooltip = "Add a character to your project"
+size_flags_horizontal = 3
+disabled = true
+text = "Add Character"
+
+[node name="btn_PullCharacter" type="Button" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_CHARACTER_MANAGEMENT/VBOX_CHARACTER_INFO_INPUT/HBOX_CHARACTER_BUTTONS"]
+unique_name_in_owner = true
+margin_left = 205.0
+margin_right = 406.0
+margin_bottom = 27.0
+hint_tooltip = "Pull the character's information"
+size_flags_horizontal = 3
+disabled = true
+text = "Pull Character Info"
+
+[node name="lbl_AddCharacterResults" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_CHARACTER_MANAGEMENT/VBOX_CHARACTER_INFO_INPUT"]
+unique_name_in_owner = true
+margin_top = 59.0
+margin_right = 406.0
+margin_bottom = 73.0
+
+[node name="HBOX_OPEN_PULL_RESET" type="HBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_CHARACTER_MANAGEMENT/VBOX_CHARACTER_INFO_INPUT"]
+margin_top = 77.0
+margin_right = 406.0
+margin_bottom = 104.0
+
+[node name="btn_OpenCharacterScene" type="Button" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_CHARACTER_MANAGEMENT/VBOX_CHARACTER_INFO_INPUT/HBOX_OPEN_PULL_RESET"]
+unique_name_in_owner = true
+margin_right = 201.0
+margin_bottom = 27.0
+hint_tooltip = "Open the character's scene"
+size_flags_horizontal = 3
+disabled = true
+text = "Open Character Scene"
+
+[node name="btn_PullStates" type="Button" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_CHARACTER_MANAGEMENT/VBOX_CHARACTER_INFO_INPUT/HBOX_OPEN_PULL_RESET"]
+unique_name_in_owner = true
+margin_left = 205.0
+margin_right = 406.0
+margin_bottom = 27.0
+hint_tooltip = "Forces and update to the states list below."
+size_flags_horizontal = 3
+text = "Pull States"
+
+[node name="btn_ResetCharacter" type="Button" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_CHARACTER_MANAGEMENT/VBOX_CHARACTER_INFO_INPUT/HBOX_OPEN_PULL_RESET"]
+unique_name_in_owner = true
+visible = false
+margin_left = 262.0
+margin_right = 380.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+text = "Reset Character"
+
+[node name="btn_ResetToDefault" type="Button" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_CHARACTER_MANAGEMENT/VBOX_CHARACTER_INFO_INPUT"]
+unique_name_in_owner = true
+visible = false
+margin_top = 108.0
+margin_right = 406.0
+margin_bottom = 135.0
+hint_tooltip = "Remove the character from your project"
+disabled = true
+text = "Match Character to Default"
+
+[node name="btn_MakePlayer" type="Button" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_CHARACTER_MANAGEMENT/VBOX_CHARACTER_INFO_INPUT"]
+unique_name_in_owner = true
+visible = false
+margin_top = 108.0
+margin_right = 406.0
+margin_bottom = 135.0
+hint_tooltip = "Remove the character from your project"
+disabled = true
+text = "Make into Player Character"
+
+[node name="btn_RemoveCharacter" type="Button" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_CHARACTER_MANAGEMENT/VBOX_CHARACTER_INFO_INPUT"]
+unique_name_in_owner = true
+margin_top = 108.0
+margin_right = 406.0
+margin_bottom = 135.0
+hint_tooltip = "Remove the character from your project"
+disabled = true
+text = "Remove Character"
+
+[node name="btn_OpenBaseCharacter" type="Button" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_CHARACTER_MANAGEMENT/VBOX_CHARACTER_INFO_INPUT"]
+unique_name_in_owner = true
+margin_top = 139.0
+margin_right = 406.0
+margin_bottom = 166.0
+hint_tooltip = "Remove the character from your project"
+text = "Open Base Character Scene"
+
+[node name="VBOX_CHARACTER_INFO_OUTPUT" type="VBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_CHARACTER_MANAGEMENT"]
+margin_left = 410.0
+margin_right = 816.0
+margin_bottom = 166.0
+size_flags_horizontal = 3
+
+[node name="lbl_CharacterInfoHeader" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_CHARACTER_MANAGEMENT/VBOX_CHARACTER_INFO_OUTPUT"]
+unique_name_in_owner = true
+margin_right = 406.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 1 )
+text = "Character Info for: "
+
+[node name="OUTPUT_SCROLL_PANEL" type="ScrollContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_CHARACTER_MANAGEMENT/VBOX_CHARACTER_INFO_OUTPUT"]
+self_modulate = Color( 0.74902, 0.74902, 0.74902, 1 )
+margin_top = 21.0
+margin_right = 406.0
+margin_bottom = 166.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/bg = ExtResource( 3 )
+scroll_horizontal_enabled = false
+
+[node name="OUTPUT_MARGIN_CONTAINER" type="MarginContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_CHARACTER_MANAGEMENT/VBOX_CHARACTER_INFO_OUTPUT/OUTPUT_SCROLL_PANEL"]
+margin_right = 406.0
+margin_bottom = 145.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 3
+custom_constants/margin_top = 3
+custom_constants/margin_left = 3
+custom_constants/margin_bottom = 3
+
+[node name="lbl_CharacterOutputText" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_CHARACTER_MANAGEMENT/VBOX_CHARACTER_INFO_OUTPUT/OUTPUT_SCROLL_PANEL/OUTPUT_MARGIN_CONTAINER"]
+unique_name_in_owner = true
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 403.0
+margin_bottom = 142.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+autowrap = true
+
+[node name="HSeparator2" type="HSeparator" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL"]
+margin_top = 247.0
+margin_right = 816.0
+margin_bottom = 257.0
+custom_constants/separation = 10
+
+[node name="HBOX_STATES" type="HBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL"]
+margin_top = 261.0
+margin_right = 816.0
+margin_bottom = 527.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBOX_CURRENT_STATES" type="VBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES"]
+self_modulate = Color( 0.74902, 0.74902, 0.74902, 1 )
+margin_right = 200.0
+margin_bottom = 266.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ANIMATION_STATES_HEADER" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATES"]
+margin_right = 200.0
+margin_bottom = 17.0
+hint_tooltip = "List of the current states that exist as Nodes within the StateMachine on your AnimationTree for this character."
+mouse_filter = 1
+custom_fonts/font = ExtResource( 1 )
+text = "animation states"
+align = 1
+autowrap = true
+uppercase = true
+
+[node name="SCROLL_CONTAINER_STATES" type="ScrollContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATES"]
+self_modulate = Color( 0.74902, 0.74902, 0.74902, 1 )
+margin_top = 21.0
+margin_right = 200.0
+margin_bottom = 235.0
+size_flags_horizontal = 7
+size_flags_vertical = 3
+custom_styles/bg = ExtResource( 3 )
+
+[node name="grid_StatesButtonGrid" type="GridContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATES/SCROLL_CONTAINER_STATES"]
+unique_name_in_owner = true
+margin_left = 100.0
+margin_right = 100.0
+margin_bottom = 214.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+columns = 2
+
+[node name="btn_ResetStates" type="Button" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATES"]
+unique_name_in_owner = true
+margin_top = 239.0
+margin_right = 200.0
+margin_bottom = 266.0
+hint_tooltip = "Reset the States of this character to match the BaseCharacter (located in res://addons/Autoanim/CharacterBase/BaseCharacter.tscn)"
+disabled = true
+text = "Reset States List to Default"
+
+[node name="VBOX_CURRENT_STATE_INFORMATION" type="VBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES"]
+margin_left = 204.0
+margin_right = 604.0
+margin_bottom = 266.0
+size_flags_horizontal = 7
+size_flags_vertical = 5
+size_flags_stretch_ratio = 2.0
+
+[node name="lbl_StateInfoHeader" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATE_INFORMATION"]
+unique_name_in_owner = true
+margin_right = 400.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 1 )
+text = "INFO FOR STATE: "
+uppercase = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATE_INFORMATION"]
+margin_top = 21.0
+margin_right = 400.0
+margin_bottom = 183.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="grid_StateInfo" type="HFlowContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATE_INFORMATION/ScrollContainer"]
+unique_name_in_owner = true
+margin_right = 388.0
+margin_bottom = 244.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/vseparation = 5
+custom_constants/hseparation = 5
+
+[node name="HBOX_SPRITE_SIZE" type="HBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATE_INFORMATION/ScrollContainer/grid_StateInfo"]
+self_modulate = Color( 0.74902, 0.74902, 0.74902, 1 )
+margin_right = 94.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SPRITE_SIZE_HEADER" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATE_INFORMATION/ScrollContainer/grid_StateInfo/HBOX_SPRITE_SIZE"]
+margin_right = 63.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = ExtResource( 2 )
+text = "Sprite Size:"
+align = 2
+
+[node name="lbl_InfoSpriteSize" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATE_INFORMATION/ScrollContainer/grid_StateInfo/HBOX_SPRITE_SIZE"]
+unique_name_in_owner = true
+margin_left = 67.0
+margin_right = 94.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = ExtResource( 2 )
+
+[node name="HBOX_FRAME_COUNT" type="HBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATE_INFORMATION/ScrollContainer/grid_StateInfo"]
+margin_left = 99.0
+margin_right = 179.0
+margin_bottom = 17.0
+
+[node name="FRAME_COUNT_HEADER" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATE_INFORMATION/ScrollContainer/grid_StateInfo/HBOX_FRAME_COUNT"]
+margin_right = 76.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 2 )
+text = "Frame Count:"
+align = 2
+
+[node name="lbl_InfoFrameCount" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATE_INFORMATION/ScrollContainer/grid_StateInfo/HBOX_FRAME_COUNT"]
+unique_name_in_owner = true
+margin_left = 80.0
+margin_right = 80.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 2 )
+
+[node name="HBOX_ANIM_LENGTH" type="HBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATE_INFORMATION/ScrollContainer/grid_StateInfo"]
+margin_left = 184.0
+margin_right = 290.0
+margin_bottom = 17.0
+
+[node name="ANIM_LENGTH_HEADER" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATE_INFORMATION/ScrollContainer/grid_StateInfo/HBOX_ANIM_LENGTH"]
+margin_right = 102.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 2 )
+text = "Animation Length:"
+align = 2
+
+[node name="lbl_InfoAnimLength" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATE_INFORMATION/ScrollContainer/grid_StateInfo/HBOX_ANIM_LENGTH"]
+unique_name_in_owner = true
+margin_left = 106.0
+margin_right = 106.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 2 )
+
+[node name="HBOX_ANIM_STEP" type="HBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATE_INFORMATION/ScrollContainer/grid_StateInfo"]
+margin_left = 295.0
+margin_right = 388.0
+margin_bottom = 17.0
+
+[node name="ANIM_STEP_HEADER" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATE_INFORMATION/ScrollContainer/grid_StateInfo/HBOX_ANIM_STEP"]
+margin_right = 89.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 2 )
+text = "Animation Step:"
+align = 2
+
+[node name="lbl_InfoAnimStep" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATE_INFORMATION/ScrollContainer/grid_StateInfo/HBOX_ANIM_STEP"]
+unique_name_in_owner = true
+margin_left = 93.0
+margin_right = 93.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 2 )
+
+[node name="HBOX_BLEND_TREE_TRIS_COUNT" type="HBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATE_INFORMATION/ScrollContainer/grid_StateInfo"]
+margin_top = 22.0
+margin_right = 154.0
+margin_bottom = 39.0
+
+[node name="BLEND_TREE_TRIS_COUNT_HEADER" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATE_INFORMATION/ScrollContainer/grid_StateInfo/HBOX_BLEND_TREE_TRIS_COUNT"]
+margin_right = 150.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Blend Tree Triangle Count:"
+align = 2
+
+[node name="lbl_InfoBlendTreeTrisCount" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATE_INFORMATION/ScrollContainer/grid_StateInfo/HBOX_BLEND_TREE_TRIS_COUNT"]
+unique_name_in_owner = true
+margin_left = 154.0
+margin_right = 154.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+
+[node name="HBOX_BLEND_TREE_NODE_COUNT" type="HBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATE_INFORMATION/ScrollContainer/grid_StateInfo"]
+margin_left = 159.0
+margin_top = 22.0
+margin_right = 297.0
+margin_bottom = 39.0
+
+[node name="BLEND_TREE_NODE_COUNT_HEADER" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATE_INFORMATION/ScrollContainer/grid_StateInfo/HBOX_BLEND_TREE_NODE_COUNT"]
+margin_right = 134.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 2 )
+text = "Blend Tree Node Count:"
+align = 2
+valign = 1
+
+[node name="lbl_InfoBlendTreeNodeCount" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATE_INFORMATION/ScrollContainer/grid_StateInfo/HBOX_BLEND_TREE_NODE_COUNT"]
+unique_name_in_owner = true
+margin_left = 138.0
+margin_right = 138.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+
+[node name="HBOX_TRANSITIONS" type="HBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATE_INFORMATION/ScrollContainer/grid_StateInfo"]
+margin_left = 302.0
+margin_top = 22.0
+margin_right = 372.0
+margin_bottom = 39.0
+
+[node name="TRANSITIONS_HEADER" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATE_INFORMATION/ScrollContainer/grid_StateInfo/HBOX_TRANSITIONS"]
+margin_right = 66.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 2 )
+text = "Transitions:"
+align = 2
+valign = 1
+
+[node name="lbl_InfoStateTransitions" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATE_INFORMATION/ScrollContainer/grid_StateInfo/HBOX_TRANSITIONS"]
+unique_name_in_owner = true
+margin_left = 70.0
+margin_right = 70.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 2 )
+
+[node name="HBOX_TEXTURE" type="HBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATE_INFORMATION/ScrollContainer/grid_StateInfo"]
+margin_top = 44.0
+margin_right = 310.0
+margin_bottom = 244.0
+size_flags_vertical = 3
+
+[node name="TEXTURE_HEADER" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATE_INFORMATION/ScrollContainer/grid_StateInfo/HBOX_TEXTURE"]
+margin_top = 93.0
+margin_right = 106.0
+margin_bottom = 107.0
+size_flags_vertical = 6
+text = "Texture Preview:"
+align = 2
+valign = 1
+
+[node name="trect_InfoStateTexture" type="TextureRect" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATE_INFORMATION/ScrollContainer/grid_StateInfo/HBOX_TEXTURE"]
+unique_name_in_owner = true
+margin_left = 110.0
+margin_right = 310.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 200, 200 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand = true
+stretch_mode = 2
+
+[node name="lbl_InfoTexturePath" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATE_INFORMATION"]
+unique_name_in_owner = true
+margin_top = 187.0
+margin_right = 400.0
+margin_bottom = 204.0
+custom_fonts/font = ExtResource( 2 )
+text = "No texture assigned to state.  Click 'Edit State' to assign."
+align = 1
+
+[node name="btn_EditState" type="Button" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATE_INFORMATION"]
+unique_name_in_owner = true
+margin_top = 208.0
+margin_right = 400.0
+margin_bottom = 235.0
+text = "Edit State"
+
+[node name="btn_ResetStatetoDefault" type="Button" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_CURRENT_STATE_INFORMATION"]
+unique_name_in_owner = true
+margin_top = 239.0
+margin_right = 400.0
+margin_bottom = 266.0
+text = "RESET STATE TO DEFAULT"
+
+[node name="VSeparator" type="VSeparator" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES"]
+margin_left = 608.0
+margin_right = 612.0
+margin_bottom = 266.0
+
+[node name="VBOX_DEFAULTS_INFO" type="VBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES"]
+margin_left = 616.0
+margin_right = 816.0
+margin_bottom = 266.0
+size_flags_horizontal = 7
+
+[node name="DEFAULTS_HEADER" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_DEFAULTS_INFO"]
+margin_right = 200.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 1 )
+text = "DEFAULTS"
+align = 1
+uppercase = true
+
+[node name="SCROLL_CONTAINER_DEFAULTS" type="ScrollContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_DEFAULTS_INFO"]
+self_modulate = Color( 0.74902, 0.74902, 0.74902, 1 )
+margin_top = 21.0
+margin_right = 200.0
+margin_bottom = 235.0
+size_flags_horizontal = 7
+size_flags_vertical = 3
+custom_styles/bg = ExtResource( 3 )
+
+[node name="DEFAULTS_MARGIN_CONTAINER" type="MarginContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_DEFAULTS_INFO/SCROLL_CONTAINER_DEFAULTS"]
+margin_left = 15.0
+margin_right = 185.0
+margin_bottom = 214.0
+size_flags_horizontal = 6
+size_flags_vertical = 3
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="VBOX_DEFAULTS_INFORMATION" type="VBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_DEFAULTS_INFO/SCROLL_CONTAINER_DEFAULTS/DEFAULTS_MARGIN_CONTAINER"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 165.0
+margin_bottom = 209.0
+size_flags_horizontal = 6
+size_flags_vertical = 3
+custom_constants/separation = 2
+
+[node name="DEFAULT_DIRECTION_SET_HEADER" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_DEFAULTS_INFO/SCROLL_CONTAINER_DEFAULTS/DEFAULTS_MARGIN_CONTAINER/VBOX_DEFAULTS_INFORMATION"]
+margin_right = 160.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 5 )
+text = "Direction Set:"
+align = 1
+valign = 2
+uppercase = true
+
+[node name="lbl_DefaultDirectionSet" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_DEFAULTS_INFO/SCROLL_CONTAINER_DEFAULTS/DEFAULTS_MARGIN_CONTAINER/VBOX_DEFAULTS_INFORMATION" instance=ExtResource( 9 )]
+unique_name_in_owner = true
+margin_top = 16.0
+margin_right = 160.0
+margin_bottom = 31.0
+text = ""
+
+[node name="grid_DirectionsInSet" type="GridContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_DEFAULTS_INFO/SCROLL_CONTAINER_DEFAULTS/DEFAULTS_MARGIN_CONTAINER/VBOX_DEFAULTS_INFORMATION"]
+unique_name_in_owner = true
+margin_top = 33.0
+margin_right = 160.0
+margin_bottom = 33.0
+size_flags_vertical = 5
+columns = 2
+
+[node name="DEFAULT_SPRITE_SIZE_HEADER" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_DEFAULTS_INFO/SCROLL_CONTAINER_DEFAULTS/DEFAULTS_MARGIN_CONTAINER/VBOX_DEFAULTS_INFORMATION"]
+margin_top = 35.0
+margin_right = 160.0
+margin_bottom = 49.0
+custom_fonts/font = ExtResource( 5 )
+text = "Default Sprite Size:"
+align = 1
+valign = 2
+uppercase = true
+
+[node name="lbl_DefaultSpriteSize" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_DEFAULTS_INFO/SCROLL_CONTAINER_DEFAULTS/DEFAULTS_MARGIN_CONTAINER/VBOX_DEFAULTS_INFORMATION" instance=ExtResource( 9 )]
+unique_name_in_owner = true
+margin_top = 51.0
+margin_right = 160.0
+margin_bottom = 66.0
+text = "0px by 0px"
+
+[node name="HBOX_DEFAULT_STEP" type="HBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_DEFAULTS_INFO/SCROLL_CONTAINER_DEFAULTS/DEFAULTS_MARGIN_CONTAINER/VBOX_DEFAULTS_INFORMATION"]
+margin_top = 68.0
+margin_right = 160.0
+margin_bottom = 85.0
+
+[node name="DEFAULT_STEP_HEADER" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_DEFAULTS_INFO/SCROLL_CONTAINER_DEFAULTS/DEFAULTS_MARGIN_CONTAINER/VBOX_DEFAULTS_INFORMATION/HBOX_DEFAULT_STEP"]
+margin_right = 90.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 1 )
+text = "DEFAULT STEP:"
+
+[node name="lbl_DefaultStep" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_DEFAULTS_INFO/SCROLL_CONTAINER_DEFAULTS/DEFAULTS_MARGIN_CONTAINER/VBOX_DEFAULTS_INFORMATION/HBOX_DEFAULT_STEP"]
+unique_name_in_owner = true
+margin_left = 94.0
+margin_top = 1.0
+margin_right = 140.0
+margin_bottom = 15.0
+text = "0.1 sec"
+
+[node name="HBOX_DEFAULT_LENGTH" type="HBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_DEFAULTS_INFO/SCROLL_CONTAINER_DEFAULTS/DEFAULTS_MARGIN_CONTAINER/VBOX_DEFAULTS_INFORMATION"]
+margin_top = 87.0
+margin_right = 160.0
+margin_bottom = 104.0
+
+[node name="DEFAULT_LENGTH_HEADER" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_DEFAULTS_INFO/SCROLL_CONTAINER_DEFAULTS/DEFAULTS_MARGIN_CONTAINER/VBOX_DEFAULTS_INFORMATION/HBOX_DEFAULT_LENGTH"]
+margin_right = 110.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 1 )
+text = "DEFAULT LENGTH:"
+
+[node name="lbl_DefaultLengh" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_DEFAULTS_INFO/SCROLL_CONTAINER_DEFAULTS/DEFAULTS_MARGIN_CONTAINER/VBOX_DEFAULTS_INFORMATION/HBOX_DEFAULT_LENGTH"]
+unique_name_in_owner = true
+margin_left = 114.0
+margin_top = 1.0
+margin_right = 160.0
+margin_bottom = 15.0
+text = "0.8 sec"
+
+[node name="HBOX_DEFAULT_TRACK_COUNT" type="HBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_DEFAULTS_INFO/SCROLL_CONTAINER_DEFAULTS/DEFAULTS_MARGIN_CONTAINER/VBOX_DEFAULTS_INFORMATION"]
+visible = false
+margin_top = 106.0
+margin_right = 160.0
+margin_bottom = 123.0
+
+[node name="DEFAULT_TRACK_COUNT_HEADER" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_DEFAULTS_INFO/SCROLL_CONTAINER_DEFAULTS/DEFAULTS_MARGIN_CONTAINER/VBOX_DEFAULTS_INFORMATION/HBOX_DEFAULT_TRACK_COUNT"]
+margin_right = 147.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 1 )
+text = "Default Track Count:"
+align = 1
+uppercase = true
+
+[node name="lbl_DefaultTrackCount" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_DEFAULTS_INFO/SCROLL_CONTAINER_DEFAULTS/DEFAULTS_MARGIN_CONTAINER/VBOX_DEFAULTS_INFORMATION/HBOX_DEFAULT_TRACK_COUNT"]
+unique_name_in_owner = true
+margin_left = 151.0
+margin_top = 1.0
+margin_right = 160.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 0, 15 )
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "0"
+align = 1
+
+[node name="HBOX_DEFAULT_FRAME_COUNT" type="HBoxContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_DEFAULTS_INFO/SCROLL_CONTAINER_DEFAULTS/DEFAULTS_MARGIN_CONTAINER/VBOX_DEFAULTS_INFORMATION"]
+visible = false
+margin_top = 106.0
+margin_right = 160.0
+margin_bottom = 123.0
+
+[node name="DEFAULT_FRAME_COUNT_HEADER" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_DEFAULTS_INFO/SCROLL_CONTAINER_DEFAULTS/DEFAULTS_MARGIN_CONTAINER/VBOX_DEFAULTS_INFORMATION/HBOX_DEFAULT_FRAME_COUNT"]
+margin_right = 149.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 1 )
+text = "Default Frame Count:"
+align = 1
+uppercase = true
+
+[node name="lbl_DefaultFrameCount" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_DEFAULTS_INFO/SCROLL_CONTAINER_DEFAULTS/DEFAULTS_MARGIN_CONTAINER/VBOX_DEFAULTS_INFORMATION/HBOX_DEFAULT_FRAME_COUNT"]
+unique_name_in_owner = true
+margin_left = 153.0
+margin_top = 1.0
+margin_right = 160.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 0, 15 )
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "0"
+align = 1
+
+[node name="DEFAULT_ANIMATIONS_HEADER" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_DEFAULTS_INFO/SCROLL_CONTAINER_DEFAULTS/DEFAULTS_MARGIN_CONTAINER/VBOX_DEFAULTS_INFORMATION"]
+visible = false
+margin_top = 106.0
+margin_right = 160.0
+margin_bottom = 120.0
+hint_tooltip = "Determined by the states on BaseCharacter"
+mouse_filter = 1
+custom_fonts/font = ExtResource( 5 )
+text = "Default Animations:"
+align = 1
+valign = 2
+uppercase = true
+
+[node name="grid_DefaultAnimations" type="GridContainer" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_DEFAULTS_INFO/SCROLL_CONTAINER_DEFAULTS/DEFAULTS_MARGIN_CONTAINER/VBOX_DEFAULTS_INFORMATION"]
+unique_name_in_owner = true
+visible = false
+margin_top = 122.0
+margin_right = 160.0
+margin_bottom = 122.0
+size_flags_horizontal = 7
+columns = 2
+
+[node name="btn_EditDefaults" type="Button" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL/HBOX_STATES/VBOX_DEFAULTS_INFO"]
+unique_name_in_owner = true
+margin_top = 239.0
+margin_right = 200.0
+margin_bottom = 266.0
+text = "Edit Defaults"
+
+[node name="btn_GenerateAnimations" type="Button" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL"]
+unique_name_in_owner = true
+visible = false
+margin_top = 500.0
+margin_right = 816.0
+margin_bottom = 527.0
+disabled = true
+text = "Generate Animations"
+
+[node name="lbl_GenerateResult" type="Label" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL"]
+unique_name_in_owner = true
+visible = false
+margin_top = 513.0
+margin_right = 816.0
+margin_bottom = 527.0
+text = "Default Generate Text"
+align = 1
+
+[node name="btn_ResetAutoAnim" type="Button" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL"]
+unique_name_in_owner = true
+margin_left = 604.0
+margin_top = 531.0
+margin_right = 816.0
+margin_bottom = 558.0
+size_flags_horizontal = 8
+shortcut_in_tooltip = false
+text = "Permanently Reset AutoAnim Addon"
+
+[node name="btn_ClearAnimations" type="Button" parent="MAIN_SCROLL_CONTAINER/HBOX_LAYOUT/GenerateAnimsControl/GENERATION_PANEL"]
+unique_name_in_owner = true
+visible = false
+margin_top = 531.0
+margin_right = 816.0
+margin_bottom = 558.0
+disabled = true
+text = "CLEAR ANIMATIONS"
+__meta__ = {
+"_editor_description_": "WARNING: DELETES ALL ANIMATIONS FROM YOUR CHARACTER!!!"
+}
+
+[node name="ScriptPopup" type="FileDialog" parent="."]
+unique_name_in_owner = true
+margin_right = 315.0
+margin_bottom = 130.0
+popup_exclusive = true
+window_title = "Open a File"
+resizable = true
+dialog_text = "WARNING!
+
+Please see the readme file before changing this script!
+"
+dialog_autowrap = true
+mode = 0
+filters = PoolStringArray( "*.gd ; GDScript Files" )
+
+[node name="AssetDirectoryPopup" type="FileDialog" parent="."]
+unique_name_in_owner = true
+margin_right = 315.0
+margin_bottom = 130.0
+popup_exclusive = true
+window_title = "Open a Directory"
+resizable = true
+dialog_text = "Choose the directory where you store your assets"
+mode = 2
+
+[node name="CharacterDirectoryPopup" type="FileDialog" parent="."]
+unique_name_in_owner = true
+margin_right = 315.0
+margin_bottom = 130.0
+popup_exclusive = true
+window_title = "Open a Directory"
+resizable = true
+dialog_text = "Choose the directory where you store your character scenes"
+mode = 2
+
+[node name="EditStateInterface" type="PopupPanel" parent="."]
+unique_name_in_owner = true
+visible = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 7 )
+
+[node name="EDIT_STATE_MARGIN_CONTAINER" type="MarginContainer" parent="EditStateInterface"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = -4.0
+margin_bottom = -4.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="VBOX_MAIN" type="VBoxContainer" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 1011.0
+margin_bottom = 587.0
+
+[node name="lbl_EditStateInfoHeader" type="Label" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN"]
+unique_name_in_owner = true
+margin_right = 1006.0
+margin_bottom = 14.0
+text = "STATE INFO FOR Character'S State STATE"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="HSeparator3" type="HSeparator" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN"]
+margin_top = 18.0
+margin_right = 1006.0
+margin_bottom = 22.0
+
+[node name="HBOX_MAIN" type="HBoxContainer" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN"]
+margin_top = 26.0
+margin_right = 1006.0
+margin_bottom = 551.0
+size_flags_vertical = 3
+
+[node name="VBOX_INPUT" type="VBoxContainer" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN"]
+margin_right = 413.0
+margin_bottom = 525.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT"]
+margin_right = 413.0
+margin_bottom = 292.0
+size_flags_horizontal = 7
+size_flags_vertical = 3
+
+[node name="VBOX_EDIT_STATE_TEXTURE" type="VBoxContainer" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBoxContainer2"]
+margin_right = 254.0
+margin_bottom = 292.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="lbl_EditStateTexturePath" type="Label" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBoxContainer2/VBOX_EDIT_STATE_TEXTURE"]
+unique_name_in_owner = true
+margin_right = 254.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 2 )
+text = "res//TexturePath"
+align = 1
+autowrap = true
+
+[node name="trect_EditStateTexture" type="TextureRect" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBoxContainer2/VBOX_EDIT_STATE_TEXTURE"]
+unique_name_in_owner = true
+margin_top = 21.0
+margin_right = 254.0
+margin_bottom = 261.0
+size_flags_vertical = 3
+expand = true
+stretch_mode = 6
+
+[node name="btn_EditStateChooseTexture" type="Button" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBoxContainer2/VBOX_EDIT_STATE_TEXTURE"]
+unique_name_in_owner = true
+margin_left = 73.0
+margin_top = 265.0
+margin_right = 180.0
+margin_bottom = 292.0
+size_flags_horizontal = 4
+text = "Choose Texture..."
+
+[node name="VBOX_EDIT_STATE_REFERENCES" type="VBoxContainer" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBoxContainer2"]
+margin_left = 258.0
+margin_right = 413.0
+margin_bottom = 292.0
+size_flags_horizontal = 9
+size_flags_vertical = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBoxContainer2/VBOX_EDIT_STATE_REFERENCES"]
+margin_right = 155.0
+margin_bottom = 261.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="opt_EditStateDirectionSet" type="OptionButton" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBoxContainer2/VBOX_EDIT_STATE_REFERENCES/VBoxContainer"]
+unique_name_in_owner = true
+margin_right = 155.0
+margin_bottom = 27.0
+size_flags_horizontal = 7
+text = "4 - Direction, Top-Down"
+items = [ "4 - Direction, Top-Down", null, false, 0, null, "4 - Direction, Isometric", null, false, 1, null, "8 - Direction, Top-Down", null, false, 2, null, "2 - Direction, Platformer", null, false, 3, null ]
+selected = 0
+
+[node name="HEADER_ANIMATION_TREE" type="Label" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBoxContainer2/VBOX_EDIT_STATE_REFERENCES/VBoxContainer"]
+margin_top = 31.0
+margin_right = 155.0
+margin_bottom = 45.0
+text = "ANIMATION TREE"
+align = 1
+
+[node name="lbl_EditStateAnimTree" type="Label" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBoxContainer2/VBOX_EDIT_STATE_REFERENCES/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 49.0
+margin_right = 155.0
+margin_bottom = 66.0
+custom_fonts/font = ExtResource( 2 )
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBoxContainer2/VBOX_EDIT_STATE_REFERENCES/VBoxContainer"]
+margin_top = 70.0
+margin_right = 155.0
+margin_bottom = 74.0
+
+[node name="HEADER_ANIMATION_Player" type="Label" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBoxContainer2/VBOX_EDIT_STATE_REFERENCES/VBoxContainer"]
+margin_top = 78.0
+margin_right = 155.0
+margin_bottom = 92.0
+text = "ANIMATION PLAYER"
+align = 1
+
+[node name="lbl_EditStateAnimPlayer" type="Label" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBoxContainer2/VBOX_EDIT_STATE_REFERENCES/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 96.0
+margin_right = 155.0
+margin_bottom = 113.0
+custom_fonts/font = ExtResource( 2 )
+align = 1
+
+[node name="btn_EditStatePullRefs" type="Button" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBoxContainer2/VBOX_EDIT_STATE_REFERENCES"]
+unique_name_in_owner = true
+margin_top = 265.0
+margin_right = 155.0
+margin_bottom = 292.0
+hint_tooltip = "This will fill the above references on the character.  Use to pull if errors occur."
+size_flags_vertical = 8
+text = "PULL REFERENCES"
+
+[node name="HSeparator2" type="HSeparator" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT"]
+margin_top = 296.0
+margin_right = 413.0
+margin_bottom = 300.0
+
+[node name="HBOX_SPRITE_SIZE" type="HBoxContainer" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT"]
+margin_top = 304.0
+margin_right = 413.0
+margin_bottom = 328.0
+size_flags_horizontal = 7
+
+[node name="SPRITE_SIZE_HEADER" type="Label" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBOX_SPRITE_SIZE"]
+margin_top = 5.0
+margin_right = 106.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Sprite Size:"
+align = 2
+
+[node name="spin_EditStateSpriteWidth" type="SpinBox" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBOX_SPRITE_SIZE"]
+unique_name_in_owner = true
+margin_left = 110.0
+margin_right = 217.0
+margin_bottom = 24.0
+size_flags_horizontal = 7
+size_flags_vertical = 4
+min_value = 1.0
+max_value = 5000.0
+value = 1.0
+rounded = true
+suffix = "px wide"
+
+[node name="SPRITE_SIZE_BY" type="Label" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBOX_SPRITE_SIZE"]
+margin_left = 221.0
+margin_top = 5.0
+margin_right = 244.0
+margin_bottom = 19.0
+text = " by "
+align = 1
+valign = 1
+
+[node name="spin_EditStateSpriteHeight" type="SpinBox" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBOX_SPRITE_SIZE"]
+unique_name_in_owner = true
+margin_left = 248.0
+margin_right = 355.0
+margin_bottom = 24.0
+size_flags_horizontal = 7
+size_flags_vertical = 4
+min_value = 1.0
+max_value = 5000.0
+value = 1.0
+rounded = true
+suffix = "px tall"
+
+[node name="SPRITE_SIZE_HEADER2" type="Label" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBOX_SPRITE_SIZE"]
+margin_left = 359.0
+margin_top = 5.0
+margin_right = 413.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+align = 2
+
+[node name="HSeparator" type="HSeparator" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT"]
+margin_top = 332.0
+margin_right = 413.0
+margin_bottom = 336.0
+
+[node name="HBOX_ANIMATION_LENGTH" type="HBoxContainer" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT"]
+margin_left = 7.0
+margin_top = 340.0
+margin_right = 405.0
+margin_bottom = 364.0
+size_flags_horizontal = 4
+
+[node name="ANIM_LENGTH_HEADER" type="Label" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBOX_ANIMATION_LENGTH"]
+margin_top = 5.0
+margin_right = 117.0
+margin_bottom = 19.0
+size_flags_horizontal = 7
+text = "Animation Length:"
+align = 2
+
+[node name="spin_EditStateAnimLength" type="SpinBox" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBOX_ANIMATION_LENGTH"]
+unique_name_in_owner = true
+margin_left = 121.0
+margin_right = 195.0
+margin_bottom = 24.0
+size_flags_vertical = 4
+max_value = 1000.0
+step = 0.1
+value = 1.0
+suffix = "sec"
+
+[node name="VSeparator" type="VSeparator" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBOX_ANIMATION_LENGTH"]
+margin_left = 199.0
+margin_right = 214.0
+margin_bottom = 24.0
+custom_constants/separation = 15
+
+[node name="ANIM_STEP_HEADER" type="Label" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBOX_ANIMATION_LENGTH"]
+margin_left = 218.0
+margin_top = 5.0
+margin_right = 320.0
+margin_bottom = 19.0
+size_flags_horizontal = 7
+text = "Animation Step:"
+align = 2
+
+[node name="spin_EditStateAnimStep" type="SpinBox" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBOX_ANIMATION_LENGTH"]
+unique_name_in_owner = true
+margin_left = 324.0
+margin_right = 398.0
+margin_bottom = 24.0
+size_flags_vertical = 4
+max_value = 1000.0
+step = 0.1
+suffix = "sec"
+
+[node name="HSeparator3" type="HSeparator" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT"]
+margin_top = 368.0
+margin_right = 413.0
+margin_bottom = 372.0
+
+[node name="ANIMFRAMES_INSTRUCTIONS" type="Label" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT"]
+margin_top = 376.0
+margin_right = 413.0
+margin_bottom = 401.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_type_variation = "InstructionLabel"
+text = "These numbers are calculated based on the size of your texture and the given sprite size."
+align = 1
+autowrap = true
+
+[node name="HBOX_ANIMATION_DETAILS" type="HBoxContainer" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT"]
+margin_top = 405.0
+margin_right = 413.0
+margin_bottom = 419.0
+size_flags_horizontal = 3
+custom_constants/separation = 5
+
+[node name="ANIM_FRAMES_HEADER" type="Label" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBOX_ANIMATION_DETAILS"]
+margin_right = 123.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Number of Frames:"
+
+[node name="lbl_EditStateAnimFrames" type="Label" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBOX_ANIMATION_DETAILS"]
+unique_name_in_owner = true
+margin_left = 128.0
+margin_right = 136.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "0"
+
+[node name="ANIM_VFRAMES_HEADER" type="Label" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBOX_ANIMATION_DETAILS"]
+margin_left = 141.0
+margin_right = 250.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Number of Rows:"
+
+[node name="lbl_EditStateAnimVFrames" type="Label" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBOX_ANIMATION_DETAILS"]
+unique_name_in_owner = true
+margin_left = 255.0
+margin_right = 263.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "0"
+
+[node name="ANIM_HFRAMES_HEADER2" type="Label" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBOX_ANIMATION_DETAILS"]
+margin_left = 268.0
+margin_right = 400.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Number of Columns:"
+
+[node name="lbl_EditStateAnimHFrames" type="Label" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBOX_ANIMATION_DETAILS"]
+unique_name_in_owner = true
+margin_left = 405.0
+margin_right = 413.0
+margin_bottom = 14.0
+text = "0"
+
+[node name="HSeparator4" type="HSeparator" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT"]
+margin_top = 423.0
+margin_right = 413.0
+margin_bottom = 427.0
+
+[node name="ANIM_OPTIONS_HEADER" type="Label" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT"]
+margin_top = 431.0
+margin_right = 413.0
+margin_bottom = 445.0
+text = "Animation Options:"
+align = 1
+
+[node name="HBOX_ANIM_OPTIONS" type="HBoxContainer" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT"]
+margin_left = 169.0
+margin_top = 449.0
+margin_right = 243.0
+margin_bottom = 476.0
+size_flags_horizontal = 4
+
+[node name="cbox_EditStateLooping" type="CheckBox" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBOX_ANIM_OPTIONS"]
+unique_name_in_owner = true
+margin_right = 74.0
+margin_bottom = 27.0
+hint_tooltip = "Checknig this will set this animation to loop."
+text = "Looping"
+flat = true
+
+[node name="cbox_EditStateAutoStart" type="CheckBox" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBOX_ANIM_OPTIONS"]
+unique_name_in_owner = true
+visible = false
+margin_left = 78.0
+margin_right = 160.0
+margin_bottom = 27.0
+hint_tooltip = "Checking this will change the default animation to this state's animation."
+text = "Autostart"
+flat = true
+
+[node name="HBOX_GENERATE_BUTTONS" type="HBoxContainer" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT"]
+margin_left = 109.0
+margin_top = 480.0
+margin_right = 304.0
+margin_bottom = 507.0
+size_flags_horizontal = 4
+
+[node name="btn_EditStateClearAnimations" type="Button" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBOX_GENERATE_BUTTONS"]
+unique_name_in_owner = true
+visible = false
+margin_right = 187.0
+margin_bottom = 27.0
+text = "Delete ALL Animations for State"
+
+[node name="btn_EditStateSave" type="Button" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBOX_GENERATE_BUTTONS"]
+unique_name_in_owner = true
+margin_right = 62.0
+margin_bottom = 27.0
+text = "Save Info"
+
+[node name="btn_EditStateGenerateAnims" type="Button" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT/HBOX_GENERATE_BUTTONS"]
+unique_name_in_owner = true
+margin_left = 66.0
+margin_right = 195.0
+margin_bottom = 27.0
+text = "Generate Animations"
+
+[node name="lbl_EditStateGenerationResults" type="Label" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/VBOX_INPUT"]
+unique_name_in_owner = true
+margin_top = 511.0
+margin_right = 413.0
+margin_bottom = 525.0
+text = "Generation Results"
+align = 1
+
+[node name="PANEL_SPRITE_PREVIEW" type="Panel" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN"]
+margin_left = 417.0
+margin_right = 1006.0
+margin_bottom = 525.0
+size_flags_horizontal = 7
+size_flags_vertical = 5
+size_flags_stretch_ratio = 2.0
+
+[node name="MARGIN_CONTAINER_SPRITE_PREVIEW" type="MarginContainer" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/PANEL_SPRITE_PREVIEW"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="VBOX_SPRITE_PREVIEW" type="VBoxContainer" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/PANEL_SPRITE_PREVIEW/MARGIN_CONTAINER_SPRITE_PREVIEW"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 584.0
+margin_bottom = 520.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+
+[node name="SPRITE_PREVIEW_HEADER" type="Label" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/PANEL_SPRITE_PREVIEW/MARGIN_CONTAINER_SPRITE_PREVIEW/VBOX_SPRITE_PREVIEW"]
+margin_right = 579.0
+margin_bottom = 14.0
+text = "Character Preview"
+align = 1
+
+[node name="vpc_SpritePreview" type="ViewportContainer" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/PANEL_SPRITE_PREVIEW/MARGIN_CONTAINER_SPRITE_PREVIEW/VBOX_SPRITE_PREVIEW"]
+unique_name_in_owner = true
+margin_top = 18.0
+margin_right = 579.0
+margin_bottom = 435.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+stretch = true
+
+[node name="vp_SpritePreview" type="Viewport" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/PANEL_SPRITE_PREVIEW/MARGIN_CONTAINER_SPRITE_PREVIEW/VBOX_SPRITE_PREVIEW/vpc_SpritePreview"]
+unique_name_in_owner = true
+size = Vector2( 579, 417 )
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="lbl_EditStateZoom" type="Label" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/PANEL_SPRITE_PREVIEW/MARGIN_CONTAINER_SPRITE_PREVIEW/VBOX_SPRITE_PREVIEW"]
+unique_name_in_owner = true
+margin_left = 259.0
+margin_top = 439.0
+margin_right = 319.0
+margin_bottom = 453.0
+size_flags_horizontal = 6
+size_flags_vertical = 8
+text = "Zoom: 1x"
+align = 1
+valign = 1
+
+[node name="HBOX_SCALE_BUTTONS" type="HBoxContainer" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/PANEL_SPRITE_PREVIEW/MARGIN_CONTAINER_SPRITE_PREVIEW/VBOX_SPRITE_PREVIEW"]
+margin_left = 249.0
+margin_top = 457.0
+margin_right = 329.0
+margin_bottom = 484.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="btn_Scale1x" type="Button" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/PANEL_SPRITE_PREVIEW/MARGIN_CONTAINER_SPRITE_PREVIEW/VBOX_SPRITE_PREVIEW/HBOX_SCALE_BUTTONS"]
+unique_name_in_owner = true
+margin_right = 24.0
+margin_bottom = 27.0
+text = "1X"
+
+[node name="btn_Scale2x" type="Button" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/PANEL_SPRITE_PREVIEW/MARGIN_CONTAINER_SPRITE_PREVIEW/VBOX_SPRITE_PREVIEW/HBOX_SCALE_BUTTONS"]
+unique_name_in_owner = true
+margin_left = 28.0
+margin_right = 52.0
+margin_bottom = 27.0
+text = "2X"
+
+[node name="btn_Scale3x" type="Button" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/PANEL_SPRITE_PREVIEW/MARGIN_CONTAINER_SPRITE_PREVIEW/VBOX_SPRITE_PREVIEW/HBOX_SCALE_BUTTONS"]
+unique_name_in_owner = true
+margin_left = 56.0
+margin_right = 80.0
+margin_bottom = 27.0
+text = "3X"
+
+[node name="opt_EditStatePreviewAnimation" type="OptionButton" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN/HBOX_MAIN/PANEL_SPRITE_PREVIEW/MARGIN_CONTAINER_SPRITE_PREVIEW/VBOX_SPRITE_PREVIEW"]
+unique_name_in_owner = true
+margin_top = 488.0
+margin_right = 579.0
+margin_bottom = 515.0
+text = "Preview Animation..."
+
+[node name="btn_EditStateSaveClose" type="Button" parent="EditStateInterface/EDIT_STATE_MARGIN_CONTAINER/VBOX_MAIN"]
+unique_name_in_owner = true
+margin_top = 555.0
+margin_right = 1006.0
+margin_bottom = 582.0
+text = "Save & Close"
+
+[node name="ChooseTextureDialogue" type="FileDialog" parent="."]
+unique_name_in_owner = true
+margin_right = 325.0
+margin_bottom = 130.0
+window_title = "Open a File"
+dialog_text = "Choose the texture for -Character-'s -State- State"
+mode = 0
+filters = PoolStringArray( "*.png", "*.svg" )
+
+[node name="EditDefaultsInterface" type="PopupPanel" parent="."]
+unique_name_in_owner = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -251.0
+margin_top = -252.0
+margin_right = 251.0
+margin_bottom = 252.0
+theme = ExtResource( 7 )
+
+[node name="SCROLL_CONTAINER_MAIN" type="ScrollContainer" parent="EditDefaultsInterface"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="MARGIN_CONTAINER_MAIN" type="MarginContainer" parent="EditDefaultsInterface/SCROLL_CONTAINER_MAIN"]
+margin_right = 494.0
+margin_bottom = 496.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="VBOX_MAIN" type="VBoxContainer" parent="EditDefaultsInterface/SCROLL_CONTAINER_MAIN/MARGIN_CONTAINER_MAIN"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 489.0
+margin_bottom = 491.0
+
+[node name="HEADER" type="Label" parent="EditDefaultsInterface/SCROLL_CONTAINER_MAIN/MARGIN_CONTAINER_MAIN/VBOX_MAIN"]
+margin_right = 484.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+text = "AUTOANIM DEFAULTS"
+align = 1
+valign = 1
+
+[node name="HSeparator" type="HSeparator" parent="EditDefaultsInterface/SCROLL_CONTAINER_MAIN/MARGIN_CONTAINER_MAIN/VBOX_MAIN"]
+margin_top = 24.0
+margin_right = 484.0
+margin_bottom = 28.0
+
+[node name="HBOX_DIRECIONSET" type="HBoxContainer" parent="EditDefaultsInterface/SCROLL_CONTAINER_MAIN/MARGIN_CONTAINER_MAIN/VBOX_MAIN"]
+margin_left = 113.0
+margin_top = 32.0
+margin_right = 371.0
+margin_bottom = 59.0
+size_flags_horizontal = 4
+
+[node name="LBL_DIRECTIONSET" type="Label" parent="EditDefaultsInterface/SCROLL_CONTAINER_MAIN/MARGIN_CONTAINER_MAIN/VBOX_MAIN/HBOX_DIRECIONSET"]
+margin_top = 6.0
+margin_right = 99.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "Direction Set:   "
+align = 2
+valign = 1
+
+[node name="opt_DefaultDirectionSet" type="OptionButton" parent="EditDefaultsInterface/SCROLL_CONTAINER_MAIN/MARGIN_CONTAINER_MAIN/VBOX_MAIN/HBOX_DIRECIONSET"]
+unique_name_in_owner = true
+margin_left = 103.0
+margin_right = 258.0
+margin_bottom = 27.0
+size_flags_horizontal = 7
+text = "4 - Direction, Top-Down"
+items = [ "4 - Direction, Top-Down", null, false, 0, null, "4 - Direction, Isometric", null, false, 1, null, "8 - Direction, Top-Down", null, false, 2, null, "2 - Direction, Platformer", null, false, 3, null ]
+selected = 0
+
+[node name="lbl_DefaultDirectionsInSet" type="Label" parent="EditDefaultsInterface/SCROLL_CONTAINER_MAIN/MARGIN_CONTAINER_MAIN/VBOX_MAIN"]
+unique_name_in_owner = true
+margin_top = 63.0
+margin_right = 484.0
+margin_bottom = 77.0
+
+[node name="HSeparator2" type="HSeparator" parent="EditDefaultsInterface/SCROLL_CONTAINER_MAIN/MARGIN_CONTAINER_MAIN/VBOX_MAIN"]
+modulate = Color( 0.447059, 0.447059, 0.447059, 1 )
+margin_top = 81.0
+margin_right = 484.0
+margin_bottom = 85.0
+
+[node name="SPRITE_HINT" type="Label" parent="EditDefaultsInterface/SCROLL_CONTAINER_MAIN/MARGIN_CONTAINER_MAIN/VBOX_MAIN"]
+margin_top = 89.0
+margin_right = 484.0
+margin_bottom = 119.0
+rect_min_size = Vector2( 0, 30 )
+theme_type_variation = "InstructionLabel"
+text = "Please provide the default size you want your sprite to be.
+(i.e. the width and height of one frame)"
+align = 1
+autowrap = true
+
+[node name="HBOX_SPRITESIZE" type="HBoxContainer" parent="EditDefaultsInterface/SCROLL_CONTAINER_MAIN/MARGIN_CONTAINER_MAIN/VBOX_MAIN"]
+margin_left = 56.0
+margin_top = 123.0
+margin_right = 428.0
+margin_bottom = 147.0
+size_flags_horizontal = 4
+
+[node name="SPRITE_HEIGHT" type="Label" parent="EditDefaultsInterface/SCROLL_CONTAINER_MAIN/MARGIN_CONTAINER_MAIN/VBOX_MAIN/HBOX_SPRITESIZE"]
+margin_top = 2.0
+margin_right = 87.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 0, 20 )
+size_flags_horizontal = 3
+text = "Sprite Height:"
+align = 2
+valign = 1
+
+[node name="spin_DefaultSpriteHeight" type="SpinBox" parent="EditDefaultsInterface/SCROLL_CONTAINER_MAIN/MARGIN_CONTAINER_MAIN/VBOX_MAIN/HBOX_SPRITESIZE"]
+unique_name_in_owner = true
+margin_left = 91.0
+margin_right = 165.0
+margin_bottom = 24.0
+min_value = 1.0
+max_value = 5000.0
+value = 1.0
+suffix = "px"
+
+[node name="SPRITE_WIDTH" type="Label" parent="EditDefaultsInterface/SCROLL_CONTAINER_MAIN/MARGIN_CONTAINER_MAIN/VBOX_MAIN/HBOX_SPRITESIZE"]
+margin_left = 169.0
+margin_top = 2.0
+margin_right = 268.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 0, 20 )
+text = "    Sprite Width:"
+valign = 1
+
+[node name="spin_DefaultSpriteWidth" type="SpinBox" parent="EditDefaultsInterface/SCROLL_CONTAINER_MAIN/MARGIN_CONTAINER_MAIN/VBOX_MAIN/HBOX_SPRITESIZE"]
+unique_name_in_owner = true
+margin_left = 272.0
+margin_right = 372.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 100, 20 )
+min_value = 1.0
+max_value = 5000.0
+value = 1.0
+suffix = "px"
+
+[node name="ANIMATION_TIMING_HINT" type="Label" parent="EditDefaultsInterface/SCROLL_CONTAINER_MAIN/MARGIN_CONTAINER_MAIN/VBOX_MAIN"]
+margin_top = 151.0
+margin_right = 484.0
+margin_bottom = 181.0
+rect_min_size = Vector2( 0, 30 )
+theme_type_variation = "InstructionLabel"
+text = "Set the default timing for your animations.  This can be changed later on each individual state."
+align = 1
+autowrap = true
+
+[node name="HBOX_ANIM_LENGTH" type="HBoxContainer" parent="EditDefaultsInterface/SCROLL_CONTAINER_MAIN/MARGIN_CONTAINER_MAIN/VBOX_MAIN"]
+margin_left = 104.0
+margin_top = 185.0
+margin_right = 379.0
+margin_bottom = 209.0
+size_flags_horizontal = 4
+
+[node name="ANIM_LENGTH_HEADER" type="Label" parent="EditDefaultsInterface/SCROLL_CONTAINER_MAIN/MARGIN_CONTAINER_MAIN/VBOX_MAIN/HBOX_ANIM_LENGTH"]
+margin_top = 5.0
+margin_right = 171.0
+margin_bottom = 19.0
+text = "Default Animation Length: "
+align = 2
+
+[node name="spin_DefaultAnimLength" type="SpinBox" parent="EditDefaultsInterface/SCROLL_CONTAINER_MAIN/MARGIN_CONTAINER_MAIN/VBOX_MAIN/HBOX_ANIM_LENGTH"]
+unique_name_in_owner = true
+margin_left = 175.0
+margin_right = 275.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 100, 0 )
+min_value = 0.01
+max_value = 5000.0
+step = 0.01
+value = 0.5
+suffix = "sec"
+
+[node name="HBOX_ANIM_STEP" type="HBoxContainer" parent="EditDefaultsInterface/SCROLL_CONTAINER_MAIN/MARGIN_CONTAINER_MAIN/VBOX_MAIN"]
+margin_left = 114.0
+margin_top = 213.0
+margin_right = 370.0
+margin_bottom = 237.0
+size_flags_horizontal = 4
+
+[node name="FTS_ANIM_STEP_HEADER" type="Label" parent="EditDefaultsInterface/SCROLL_CONTAINER_MAIN/MARGIN_CONTAINER_MAIN/VBOX_MAIN/HBOX_ANIM_STEP"]
+margin_top = 5.0
+margin_right = 152.0
+margin_bottom = 19.0
+text = "Default Animation Step:"
+align = 2
+
+[node name="spin_DefaultAnimStep" type="SpinBox" parent="EditDefaultsInterface/SCROLL_CONTAINER_MAIN/MARGIN_CONTAINER_MAIN/VBOX_MAIN/HBOX_ANIM_STEP"]
+unique_name_in_owner = true
+margin_left = 156.0
+margin_right = 256.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 100, 0 )
+min_value = 0.01
+max_value = 5000.0
+step = 0.1
+value = 0.1
+suffix = "sec"
+
+[node name="HSeparator3" type="HSeparator" parent="EditDefaultsInterface/SCROLL_CONTAINER_MAIN/MARGIN_CONTAINER_MAIN/VBOX_MAIN"]
+modulate = Color( 0.447059, 0.447059, 0.447059, 1 )
+margin_top = 241.0
+margin_right = 484.0
+margin_bottom = 245.0
+
+[node name="DEFAULT_STATES_HEADER" type="Label" parent="EditDefaultsInterface/SCROLL_CONTAINER_MAIN/MARGIN_CONTAINER_MAIN/VBOX_MAIN"]
+margin_top = 249.0
+margin_right = 484.0
+margin_bottom = 263.0
+text = "Default States"
+align = 1
+
+[node name="DEFAULT_STATES_INSTRUCTIONS" type="Label" parent="EditDefaultsInterface/SCROLL_CONTAINER_MAIN/MARGIN_CONTAINER_MAIN/VBOX_MAIN"]
+margin_top = 267.0
+margin_right = 484.0
+margin_bottom = 278.0
+theme_type_variation = "InstructionLabel"
+text = "Edit these on the BaseCharacter's AnimationTree Node's StateMachine."
+align = 1
+autowrap = true
+
+[node name="btn_DefaultOpenBaseCharacter" type="Button" parent="EditDefaultsInterface/SCROLL_CONTAINER_MAIN/MARGIN_CONTAINER_MAIN/VBOX_MAIN"]
+unique_name_in_owner = true
+margin_left = 158.0
+margin_top = 282.0
+margin_right = 325.0
+margin_bottom = 309.0
+size_flags_horizontal = 4
+text = "Open Base Character Scene"
+
+[node name="STATES_SCROLL_PANEL" type="ScrollContainer" parent="EditDefaultsInterface/SCROLL_CONTAINER_MAIN/MARGIN_CONTAINER_MAIN/VBOX_MAIN"]
+self_modulate = Color( 0.74902, 0.74902, 0.74902, 1 )
+margin_left = 142.0
+margin_top = 313.0
+margin_right = 342.0
+margin_bottom = 432.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 4
+size_flags_vertical = 3
+custom_styles/bg = ExtResource( 3 )
+scroll_horizontal_enabled = false
+
+[node name="STATES_MARGIN_CONTAINER" type="MarginContainer" parent="EditDefaultsInterface/SCROLL_CONTAINER_MAIN/MARGIN_CONTAINER_MAIN/VBOX_MAIN/STATES_SCROLL_PANEL"]
+margin_right = 200.0
+margin_bottom = 119.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 3
+custom_constants/margin_top = 3
+custom_constants/margin_left = 3
+custom_constants/margin_bottom = 3
+
+[node name="HSeparator4" type="HSeparator" parent="EditDefaultsInterface/SCROLL_CONTAINER_MAIN/MARGIN_CONTAINER_MAIN/VBOX_MAIN"]
+modulate = Color( 0.447059, 0.447059, 0.447059, 1 )
+margin_top = 436.0
+margin_right = 484.0
+margin_bottom = 440.0
+
+[node name="btn_DefaultsClose" type="Button" parent="EditDefaultsInterface/SCROLL_CONTAINER_MAIN/MARGIN_CONTAINER_MAIN/VBOX_MAIN"]
+unique_name_in_owner = true
+margin_left = 200.0
+margin_top = 444.0
+margin_right = 283.0
+margin_bottom = 471.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Save & Close"
+
+[node name="CLOSE_INSTRUCTIONS_LABEL" type="Label" parent="EditDefaultsInterface/SCROLL_CONTAINER_MAIN/MARGIN_CONTAINER_MAIN/VBOX_MAIN"]
+margin_top = 475.0
+margin_right = 484.0
+margin_bottom = 486.0
+theme_type_variation = "InstructionLabel"
+text = "To close without saving, click outside of this popup."
+align = 1
+
+[node name="FirstTimeSetupPopup" type="PopupPanel" parent="."]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="FTS_MARGIN_CONTAINER" type="MarginContainer" parent="FirstTimeSetupPopup"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -508.0
+margin_top = -296.0
+margin_right = 508.0
+margin_bottom = 296.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="VBOX_FTS_MAIN" type="VBoxContainer" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER"]
+margin_left = 312.0
+margin_top = 5.0
+margin_right = 704.0
+margin_bottom = 587.0
+size_flags_horizontal = 4
+
+[node name="FTS_MAIN_HEADER" type="Label" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN"]
+margin_right = 392.0
+margin_bottom = 20.0
+theme_type_variation = "HeaderLabel"
+text = "AutoAnim First Time Setup"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN"]
+margin_top = 24.0
+margin_right = 392.0
+margin_bottom = 28.0
+
+[node name="FTS_DIRECTION_HINT2" type="Label" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN"]
+margin_top = 32.0
+margin_right = 392.0
+margin_bottom = 47.0
+rect_min_size = Vector2( 0, 15 )
+theme_type_variation = "InstructionLabel"
+text = "Select the directories where your characters and assets will live."
+align = 1
+autowrap = true
+
+[node name="HBOX_FTS_DIRECTORIES" type="HBoxContainer" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN"]
+margin_top = 51.0
+margin_right = 392.0
+margin_bottom = 110.0
+size_flags_horizontal = 3
+
+[node name="VBOX_FTS_CHARACTER_DIRECTORY" type="VBoxContainer" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN/HBOX_FTS_DIRECTORIES"]
+margin_right = 190.0
+margin_bottom = 59.0
+size_flags_horizontal = 3
+
+[node name="btn_FTSCharacterDirectory" type="Button" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN/HBOX_FTS_DIRECTORIES/VBOX_FTS_CHARACTER_DIRECTORY"]
+unique_name_in_owner = true
+margin_right = 190.0
+margin_bottom = 27.0
+text = "Set Character Directory..."
+
+[node name="lbl_FTSCharacterDirectory" type="Label" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN/HBOX_FTS_DIRECTORIES/VBOX_FTS_CHARACTER_DIRECTORY"]
+unique_name_in_owner = true
+margin_top = 31.0
+margin_right = 190.0
+margin_bottom = 59.0
+grow_vertical = 2
+rect_min_size = Vector2( 0, 28 )
+size_flags_horizontal = 7
+size_flags_vertical = 1
+size_flags_stretch_ratio = 3.0
+align = 1
+autowrap = true
+max_lines_visible = 2
+
+[node name="HSeparator" type="VSeparator" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN/HBOX_FTS_DIRECTORIES"]
+margin_left = 194.0
+margin_right = 198.0
+margin_bottom = 59.0
+
+[node name="VBOX_FTS_ASSET_DIRECTORY" type="VBoxContainer" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN/HBOX_FTS_DIRECTORIES"]
+margin_left = 202.0
+margin_right = 392.0
+margin_bottom = 59.0
+size_flags_horizontal = 3
+
+[node name="btn_FTSAssetDirectory" type="Button" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN/HBOX_FTS_DIRECTORIES/VBOX_FTS_ASSET_DIRECTORY"]
+unique_name_in_owner = true
+margin_right = 190.0
+margin_bottom = 27.0
+text = "Set Asset Directory..."
+
+[node name="lbl_FTSAssetDirectory" type="Label" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN/HBOX_FTS_DIRECTORIES/VBOX_FTS_ASSET_DIRECTORY"]
+unique_name_in_owner = true
+margin_top = 31.0
+margin_right = 190.0
+margin_bottom = 59.0
+grow_vertical = 2
+rect_min_size = Vector2( 0, 28 )
+size_flags_horizontal = 7
+size_flags_vertical = 1
+size_flags_stretch_ratio = 3.0
+custom_constants/line_spacing = 14
+align = 1
+autowrap = true
+max_lines_visible = 2
+
+[node name="HSeparator2" type="VSeparator" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN/HBOX_FTS_DIRECTORIES"]
+visible = false
+margin_left = 293.0
+margin_right = 297.0
+margin_bottom = 60.0
+
+[node name="VBOX_FTS_CHARACTER_SCRIPTS" type="VBoxContainer" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN/HBOX_FTS_DIRECTORIES"]
+visible = false
+margin_left = 293.0
+margin_right = 452.0
+margin_bottom = 60.0
+size_flags_horizontal = 3
+
+[node name="HBOX_FTS_BASE_CHARACTER_SCRIPT" type="HBoxContainer" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN/HBOX_FTS_DIRECTORIES/VBOX_FTS_CHARACTER_SCRIPTS"]
+margin_right = 159.0
+margin_bottom = 28.0
+
+[node name="btn_FTSCharacterScript" type="Button" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN/HBOX_FTS_DIRECTORIES/VBOX_FTS_CHARACTER_SCRIPTS/HBOX_FTS_BASE_CHARACTER_SCRIPT"]
+unique_name_in_owner = true
+margin_right = 154.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+text = "Choose Base NPC Script..."
+
+[node name="lbl_FTSCharacterScript" type="Label" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN/HBOX_FTS_DIRECTORIES/VBOX_FTS_CHARACTER_SCRIPTS/HBOX_FTS_BASE_CHARACTER_SCRIPT"]
+unique_name_in_owner = true
+margin_left = 158.0
+margin_right = 159.0
+margin_bottom = 28.0
+grow_vertical = 2
+rect_min_size = Vector2( 0, 28 )
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_constants/line_spacing = 14
+align = 1
+autowrap = true
+max_lines_visible = 2
+
+[node name="HBOX_SET_PLAYER_CHARACTER_SCRIPT" type="HBoxContainer" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN/HBOX_FTS_DIRECTORIES/VBOX_FTS_CHARACTER_SCRIPTS"]
+margin_top = 32.0
+margin_right = 159.0
+margin_bottom = 60.0
+
+[node name="btn_FTSPlayerScript" type="Button" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN/HBOX_FTS_DIRECTORIES/VBOX_FTS_CHARACTER_SCRIPTS/HBOX_SET_PLAYER_CHARACTER_SCRIPT"]
+unique_name_in_owner = true
+margin_right = 134.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+text = "Choose Player Script..."
+
+[node name="lbl_FTSPlayerScript" type="Label" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN/HBOX_FTS_DIRECTORIES/VBOX_FTS_CHARACTER_SCRIPTS/HBOX_SET_PLAYER_CHARACTER_SCRIPT"]
+unique_name_in_owner = true
+margin_left = 138.0
+margin_right = 159.0
+margin_bottom = 28.0
+grow_vertical = 2
+rect_min_size = Vector2( 0, 28 )
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_constants/line_spacing = 14
+align = 1
+autowrap = true
+clip_text = true
+max_lines_visible = 2
+
+[node name="HSeparator5" type="HSeparator" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN"]
+margin_top = 114.0
+margin_right = 392.0
+margin_bottom = 118.0
+
+[node name="FTS_DIRECTION_HINT" type="Label" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN"]
+margin_top = 122.0
+margin_right = 392.0
+margin_bottom = 137.0
+rect_min_size = Vector2( 0, 15 )
+theme_type_variation = "InstructionLabel"
+text = "Select the direction set you want to use for your project."
+align = 1
+autowrap = true
+
+[node name="HBOX_FTS_DIRECTION_SET" type="HBoxContainer" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN"]
+margin_left = 71.0
+margin_top = 141.0
+margin_right = 321.0
+margin_bottom = 168.0
+size_flags_horizontal = 4
+
+[node name="FTS_DIRECTION_SET_HEADER" type="Label" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN/HBOX_FTS_DIRECTION_SET"]
+margin_top = 6.0
+margin_right = 91.0
+margin_bottom = 20.0
+text = "Direction Set: "
+align = 2
+
+[node name="opt_FTSDirectionSet" type="OptionButton" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN/HBOX_FTS_DIRECTION_SET"]
+unique_name_in_owner = true
+margin_left = 95.0
+margin_right = 250.0
+margin_bottom = 27.0
+size_flags_horizontal = 7
+text = "4 - Direction, Top-Down"
+items = [ "4 - Direction, Top-Down", null, false, 0, null, "4 - Direction, Isometric", null, false, 1, null, "8 - Direction, Top-Down", null, false, 2, null, "2 - Direction, Platformer", null, false, 3, null ]
+selected = 0
+
+[node name="HSeparator2" type="HSeparator" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN"]
+margin_top = 172.0
+margin_right = 392.0
+margin_bottom = 176.0
+
+[node name="FTS_SPRITE_HINT" type="Label" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN"]
+margin_top = 180.0
+margin_right = 392.0
+margin_bottom = 219.0
+rect_min_size = Vector2( 0, 30 )
+size_flags_horizontal = 5
+theme_type_variation = "InstructionLabel"
+text = "Provide the default size you want your sprite to be.
+(i.e. the width and height of one frame)
+This can be changed on each individual state later."
+align = 1
+autowrap = true
+
+[node name="HBOX_FTS_SPRITE_SIZE" type="HBoxContainer" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN"]
+margin_left = 22.0
+margin_top = 223.0
+margin_right = 370.0
+margin_bottom = 247.0
+size_flags_horizontal = 4
+
+[node name="FTS_SPRITE_SIZE_HEADER" type="Label" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN/HBOX_FTS_SPRITE_SIZE"]
+margin_top = 5.0
+margin_right = 121.0
+margin_bottom = 19.0
+text = "Default Sprite Size:"
+align = 2
+
+[node name="spin_FTSSpriteWidth" type="SpinBox" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN/HBOX_FTS_SPRITE_SIZE"]
+unique_name_in_owner = true
+margin_left = 125.0
+margin_right = 225.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 100, 0 )
+min_value = 1.0
+max_value = 5000.0
+value = 1.0
+suffix = "px wide"
+
+[node name="FTS_SPRITE_BY" type="Label" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN/HBOX_FTS_SPRITE_SIZE"]
+margin_left = 229.0
+margin_top = 5.0
+margin_right = 244.0
+margin_bottom = 19.0
+text = "by"
+align = 2
+
+[node name="spin_FTSSpriteHeight" type="SpinBox" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN/HBOX_FTS_SPRITE_SIZE"]
+unique_name_in_owner = true
+margin_left = 248.0
+margin_right = 348.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 100, 0 )
+min_value = 1.0
+max_value = 5000.0
+value = 1.0
+suffix = "px tall"
+
+[node name="HSeparator3" type="HSeparator" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN"]
+margin_top = 251.0
+margin_right = 392.0
+margin_bottom = 255.0
+
+[node name="FTS_ANIMATION_TIMING_HINT" type="Label" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN"]
+margin_top = 259.0
+margin_right = 392.0
+margin_bottom = 289.0
+rect_min_size = Vector2( 0, 30 )
+theme_type_variation = "InstructionLabel"
+text = "Set the default timing for your animations.  This can be changed later on each individual state."
+align = 1
+autowrap = true
+
+[node name="HBOX_FTS_ANIM_LENGTH" type="HBoxContainer" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN"]
+margin_left = 58.0
+margin_top = 293.0
+margin_right = 333.0
+margin_bottom = 317.0
+size_flags_horizontal = 4
+
+[node name="FTS_ANIM_LENGTH_HEADER" type="Label" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN/HBOX_FTS_ANIM_LENGTH"]
+margin_top = 5.0
+margin_right = 171.0
+margin_bottom = 19.0
+text = "Default Animation Length: "
+align = 2
+
+[node name="spin_FTSAnimLength" type="SpinBox" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN/HBOX_FTS_ANIM_LENGTH"]
+unique_name_in_owner = true
+margin_left = 175.0
+margin_right = 275.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 100, 0 )
+min_value = 0.01
+max_value = 5000.0
+step = 0.01
+value = 0.5
+suffix = "sec"
+
+[node name="HBOX_FTS_ANIM_STEP" type="HBoxContainer" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN"]
+margin_left = 68.0
+margin_top = 321.0
+margin_right = 324.0
+margin_bottom = 345.0
+size_flags_horizontal = 4
+
+[node name="FTS_ANIM_STEP_HEADER" type="Label" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN/HBOX_FTS_ANIM_STEP"]
+margin_top = 5.0
+margin_right = 152.0
+margin_bottom = 19.0
+text = "Default Animation Step:"
+align = 2
+
+[node name="spin_FTSAnimStep" type="SpinBox" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN/HBOX_FTS_ANIM_STEP"]
+unique_name_in_owner = true
+margin_left = 156.0
+margin_right = 256.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 100, 0 )
+min_value = 0.01
+max_value = 5000.0
+step = 0.1
+value = 0.1
+suffix = "sec"
+
+[node name="HSeparator4" type="HSeparator" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN"]
+margin_top = 349.0
+margin_right = 392.0
+margin_bottom = 353.0
+
+[node name="btn_FTSSaveClose" type="Button" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN"]
+unique_name_in_owner = true
+margin_left = 154.0
+margin_top = 357.0
+margin_right = 237.0
+margin_bottom = 384.0
+size_flags_horizontal = 6
+text = "Save & Close"
+
+[node name="HSeparator6" type="HSeparator" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN"]
+margin_top = 388.0
+margin_right = 392.0
+margin_bottom = 392.0
+
+[node name="btn_FTSDocs" type="Button" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN"]
+unique_name_in_owner = true
+margin_top = 396.0
+margin_right = 392.0
+margin_bottom = 423.0
+text = "Read the Docs"
+
+[node name="HBOX_FTS_EXTERNAL_LINKS" type="HBoxContainer" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN"]
+margin_top = 427.0
+margin_right = 392.0
+margin_bottom = 454.0
+size_flags_horizontal = 4
+
+[node name="btn_FTSDiscord" type="Button" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN/HBOX_FTS_EXTERNAL_LINKS"]
+unique_name_in_owner = true
+margin_right = 137.0
+margin_bottom = 27.0
+text = "Join the Discord Server"
+
+[node name="btn_FTSYoutube" type="Button" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN/HBOX_FTS_EXTERNAL_LINKS"]
+unique_name_in_owner = true
+margin_left = 141.0
+margin_right = 255.0
+margin_bottom = 27.0
+text = "Watch on YouTube"
+
+[node name="btn_FTSPatreon" type="Button" parent="FirstTimeSetupPopup/FTS_MARGIN_CONTAINER/VBOX_FTS_MAIN/HBOX_FTS_EXTERNAL_LINKS"]
+unique_name_in_owner = true
+margin_left = 259.0
+margin_right = 392.0
+margin_bottom = 27.0
+text = "Contribute on Patreon"
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+margin_right = 200.0
+margin_bottom = 70.0
+popup_exclusive = true
+resizable = true
+dialog_autowrap = true
+
+[node name="Saver" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 10 )
+
+[node name="AnimGenerator" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 6 )
