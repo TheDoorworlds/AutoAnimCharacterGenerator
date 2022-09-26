@@ -85,7 +85,8 @@ func _physics_process(delta: float) -> void:
 				if !is_player:
 					var direction :Vector2 = global_position.direction_to(wanderController.target_position)
 					velocity = velocity.move_toward(direction * max_speed, acceleration * delta)
-					
+					if global_position.distance_to(wanderController.target_position) <= 4:
+						pick_random_idle_state()
 		move_and_collide(velocity)
 
 
@@ -122,7 +123,7 @@ static func get_direction() -> Vector2:
 	).normalized()
 
 
-func pick_random_idle_state(state_list :Array) -> void:
+func pick_random_idle_state(state_list :Array = [States.IDLE, States.WANDER]) -> void:
 	state_list.shuffle()
 	self.state = state_list[0]
 	wanderController.timer.wait_time = rand_range(1, 3)
